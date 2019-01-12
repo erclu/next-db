@@ -48,5 +48,13 @@ DROP TABLE IF EXIST Autisti;
 CREATE TABLE Autisti()
 
 
-DROP TABLE IF EXIST Hub_di_ricarica
+DROP TABLE IF EXIST Hub_di_ricarica;
 CREATE TABLE Hub_di_ricarica()
+
+
+DROP TABLE IF EXIST Nodi;
+CREATE TABLE Nodi()
+
+
+DROP TABLE IF EXIST Archi;
+CREATE TABLE Archi()
