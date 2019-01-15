@@ -1,15 +1,6 @@
 /*Progetto Base di Dati 18/19 Ercole Luca e Ferrati Marco*/
 
 /*Creazione tabelle e inserimento valori*/
-DROP TABLE IF EXIST Fonte_di_pagamento;
-CREATE TABLE Fonte_di_pagamento(
-	Utente INTEGER PRIMARY KEY,
-	Tipo VARCHAR(255),
-
-	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
-)
-
-
 DROP TABLE IF EXIST Utenti;
 CREATE TABLE Utenti(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -21,38 +12,45 @@ CREATE TABLE Utenti(
 )
 /*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
-DROP TABLE IF EXIST Richieste;
-CREATE TABLE Richieste(
-	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	Orario_richiesta TIMESTAMP NOT NULL,
-	Orario_partenza TIMESTAMP NOT NULL,
-	Partenza_x FLOAT NOT NULL,
-	Partenza_y FLOAT NOT NULL,
-	Destinazione_x FLOAT NOT NULL,
-	Destinazione_y FLOAT NOT NULL,
-	Accettata BOOLEAN,
-/*	Tariffa,*/
-	Corsa INTEGER, /**/
-	Utente INTEGER NOT NULL,
 
+DROP TABLE IF EXIST Fonte_di_pagamento;
+CREATE TABLE Fonte_di_pagamento(
+	Utente INTEGER,
+	Tipo VARCHAR(255),
+
+	PRIMARY KEY (Utente, Tipo), --Solo un tipo per utente?
 	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
-	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
 )
-
-
-DROP TABLE IF EXIST Tariffe;
-CREATE TABLE Tariffe()
 
 
 DROP TABLE IF EXIST Corse;
 CREATE TABLE Corse(
 	Id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	Orario_partenza TIMESTAMP NOT NULL,
-	Partenza_x INTEGER NOT NULL,
-	Partenza_y INTEGER NOT NULL,
-	Destinazione_y INTEGER NOT NULL,
+	Origine_x INTEGER NOT NULL,
+	Origine_y INTEGER NOT NULL,
 	Destinazione_x INTEGER NOT NULL,
+	Destinazione_y INTEGER NOT NULL,
 	Ora_conclusione TIMESTAMP,
+	Prezzo DECIMAL,
+)
+
+
+DROP TABLE IF EXIST Richieste;
+CREATE TABLE Richieste(
+	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	Orario_richiesta TIMESTAMP NOT NULL,
+	Orario_partenza TIMESTAMP NOT NULL,
+	Origine_x DECIMAL NOT NULL,
+	Origine_y DECIMAL NOT NULL,
+	Destinazione_x DECIMAL NOT NULL,
+	Destinazione_y DECIMAL NOT NULL,
+	Accettata BOOLEAN,
+	Corsa INTEGER, /**/
+	Utente INTEGER NOT NULL,
+
+	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
+	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
 )
 
 
@@ -67,18 +65,6 @@ CREATE TABLE Storici(
 )
 
 
-DROP TABLE IF EXIST Associazioni;
-CREATE TABLE Associazioni(
-	Corsa INTEGER NOT NULL,
-	Tratta INTEGER NOT NULL,
-	Posto_occupato INTEGER NOT NULL,
-
-	PRIMARY KEY(Corsa, Tratta),
-	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
-	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
-)
-
-
 DROP TABLE IF EXIST Tratte;
 CREATE TABLE Tratte(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -87,6 +73,18 @@ CREATE TABLE Tratte(
 	Inizio_y INTEGER NOT NULL,
 	Fine_x INTEGER NOT NULL,
 	Fine_y INTEGER NOT NULL,
+)
+
+
+DROP TABLE IF EXIST Associazioni;
+CREATE TABLE Associazioni(
+	Corsa INTEGER NOT NULL,
+	Tratta INTEGER NOT NULL,
+	Posto_occupato INTEGER NOT NULL,
+
+	PRIMARY KEY(Corsa, Tratta, Posto_occupato),
+	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
+	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
 )
 
 
@@ -102,22 +100,29 @@ CREATE TABLE Evento(
 	FOREIGN KEY(Successiva) REFERENCES Tratte(Id),
 )
 
+DROP TABLE IF EXIST Nodi;
+CREATE TABLE Nodi(
+	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
+	Latitudine INTEGER NOT NULL,
+	Longitudine INTEGER NOT NULL,
+)
 
 DROP TABLE IF EXIST Indicazioni;
 CREATE TABLE Indicazioni(
-	/*Aggiungere un id?*/
 	Partenza INTEGER NOT NULL,
 	Destinazione INTEGER NOT NULL,
 	Tratta INTEGER NOT NULL,
-	Successiva INTEGER,
-	Precedente INTEGER,
+
+	PRIMARY KEY(Partenza, Destinazione, Tratta),
+	FOREIGN KEY(Partenza) REFERENCES Nodi(Id), --vincolo partenza e destinazione diversi?
+	FOREIGN KEY(Destinazione) REFERENCES Nodi(Id), --vincolo partenza e destinazione diversi?
 )
 
 
 DROP TABLE IF EXIST Veicoli;
 CREATE TABLE Veicoli(
 	Targa INTEGER PRIMARY KEY,
-	Stato_batteria INTEGER, /*Compreso tra 0 e 100*/
+	Stato_batteria INTEGER,
 	Posizione_x INTEGER NOT NULL,
 	Posizione_y INTEGER NOT NULL,
 	Tipo VARCHAR(255) NOT NULL,
@@ -128,7 +133,9 @@ CREATE TABLE Veicoli(
 
 	FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
 	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
-	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(/*identificatore di Hub_di_ricarica*/),
+	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(id),
+
+	CHECK (Stato_batteria>=0 AND Stato_batteria<=100),
 )
 
 
@@ -145,16 +152,11 @@ CREATE TABLE Autisti(
 
 
 DROP TABLE IF EXIST Stazione_di_ricarica;
-CREATE TABLE Hub_di_ricarica(
-	/*Qaulè l'identificatore primario??*/ /*Aggiungere a veicolo*/
-)
-
-
-DROP TABLE IF EXIST Nodi;
-CREATE TABLE Nodi(
+CREATE TABLE Stazione_di_ricarica(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	Latitudine INTEGER NOT NULL,
-	Longitudine INTEGER NOT NULL,
+	Posizione_x DECIMAL,
+	Posizione_y DECIMAL,
+	Posti_totali INTEGER,
 )
 
 
@@ -162,6 +164,7 @@ DROP TABLE IF EXIST Archi;
 CREATE TABLE Archi(
 	Entrante INTEGER NOT NULL, /*Esprimere che entrante != uscente*/
 	Uscente INTEGER NOT NULL,
+	Nome VARCHAR(255),
 	Peso INTEGER NOT NULL,
 
 	FOREIGN KEY(Entrante) REFERENCES Nodi(Id),
