@@ -133,7 +133,7 @@ CREATE TABLE Veicoli(
 
 	FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
 	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
-	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(id)
+	FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(id)
 )ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
@@ -149,8 +149,8 @@ CREATE TABLE Autisti(
 )ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
-DROP TABLE IF EXISTS Stazione_di_ricarica;
-CREATE TABLE Stazione_di_ricarica(
+DROP TABLE IF EXISTS Stazioni_di_ricarica;
+CREATE TABLE Stazioni_di_ricarica(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Posizione_x DECIMAL,
 	Posizione_y DECIMAL,
