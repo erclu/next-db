@@ -1,7 +1,7 @@
 /*Progetto Base di Dati 18/19 Ercole Luca e Ferrati Marco*/
 
 /*Creazione tabelle e inserimento valori*/
-DROP TABLE IF EXIST Utenti;
+DROP TABLE IF EXISTS Utenti;
 CREATE TABLE Utenti(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Email VARCHAR(255) NOT NULL,
@@ -13,17 +13,17 @@ CREATE TABLE Utenti(
 /*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
 
-DROP TABLE IF EXIST Fonte_di_pagamento;
+DROP TABLE IF EXISTS Fonte_di_pagamento;
 CREATE TABLE Fonte_di_pagamento(
 	Utente INTEGER,
 	Tipo VARCHAR(255),
 
-	PRIMARY KEY (Utente, Tipo), --Solo un tipo per utente?
-	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
+	PRIMARY KEY (Utente, Tipo), -- Solo un tipo per utente?
+	FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Corse;
+DROP TABLE IF EXISTS Corse;
 CREATE TABLE Corse(
 	Id INTEGER AUTO_INCREMENT PRIMARY KEY,
 	Orario_partenza TIMESTAMP NOT NULL,
@@ -32,11 +32,11 @@ CREATE TABLE Corse(
 	Destinazione_x INTEGER NOT NULL,
 	Destinazione_y INTEGER NOT NULL,
 	Ora_conclusione TIMESTAMP,
-	Prezzo DECIMAL,
+	Prezzo DECIMAL
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Richieste;
+DROP TABLE IF EXISTS Richieste;
 CREATE TABLE Richieste(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Orario_richiesta TIMESTAMP NOT NULL,
@@ -46,37 +46,37 @@ CREATE TABLE Richieste(
 	Destinazione_x DECIMAL NOT NULL,
 	Destinazione_y DECIMAL NOT NULL,
 	Accettata BOOLEAN,
-	Corsa INTEGER, /**/
+	Corsa INTEGER,
 	Utente INTEGER NOT NULL,
 
 	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
-	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
+	FOREIGN KEY(Corsa) REFERENCES Corse(Id)
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Storici;
+DROP TABLE IF EXISTS Storici;
 CREATE TABLE Storici(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Corsa INTEGER NOT NULL,
 	Utente INTEGER NOT NULL,
 
 	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
-	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
+	FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Tratte;
+DROP TABLE IF EXISTS Tratte;
 CREATE TABLE Tratte(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Orario_partenza TIMESTAMP NOT NULL,
 	Inizio_x INTEGER NOT NULL,
 	Inizio_y INTEGER NOT NULL,
 	Fine_x INTEGER NOT NULL,
-	Fine_y INTEGER NOT NULL,
+	Fine_y INTEGER NOT NULL
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Associazioni;
+DROP TABLE IF EXISTS Associazioni;
 CREATE TABLE Associazioni(
 	Corsa INTEGER NOT NULL,
 	Tratta INTEGER NOT NULL,
@@ -84,11 +84,11 @@ CREATE TABLE Associazioni(
 
 	PRIMARY KEY(Corsa, Tratta, Posto_occupato),
 	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
-	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
+	FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Evento;
+DROP TABLE IF EXISTS Evento;
 CREATE TABLE Evento(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Precedente INTEGER,
@@ -97,49 +97,47 @@ CREATE TABLE Evento(
 	Tipo VARCHAR(255),
 
 	FOREIGN KEY(Precedente) REFERENCES Tratte(Id),
-	FOREIGN KEY(Successiva) REFERENCES Tratte(Id),
+	FOREIGN KEY(Successiva) REFERENCES Tratte(Id)
 )ENGINE=InnoDB;
 
-DROP TABLE IF EXIST Nodi;
+DROP TABLE IF EXISTS Nodi;
 CREATE TABLE Nodi(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Latitudine INTEGER NOT NULL,
-	Longitudine INTEGER NOT NULL,
+	Longitudine INTEGER NOT NULL
 )ENGINE=InnoDB;
 
-DROP TABLE IF EXIST Indicazioni;
+DROP TABLE IF EXISTS Indicazioni;
 CREATE TABLE Indicazioni(
 	Partenza INTEGER NOT NULL,
 	Destinazione INTEGER NOT NULL,
 	Tratta INTEGER NOT NULL,
 
 	PRIMARY KEY(Partenza, Destinazione, Tratta),
-	FOREIGN KEY(Partenza) REFERENCES Nodi(Id), --vincolo partenza e destinazione diversi?
-	FOREIGN KEY(Destinazione) REFERENCES Nodi(Id), --vincolo partenza e destinazione diversi?
+	FOREIGN KEY(Partenza) REFERENCES Nodi(Id), -- vincolo partenza e destinazione diversi?
+	FOREIGN KEY(Destinazione) REFERENCES Nodi(Id) -- vincolo partenza e destinazione diversi?
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Veicoli;
+DROP TABLE IF EXISTS Veicoli;
 CREATE TABLE Veicoli(
 	Targa INTEGER PRIMARY KEY,
-	Stato_batteria INTEGER,
+	Stato_batteria INTEGER, -- Check, bisonga controllare con un trigger? per poi spostare assegnarli un hub di ricarica?
 	Posizione_x INTEGER NOT NULL,
 	Posizione_y INTEGER NOT NULL,
 	Tipo VARCHAR(255) NOT NULL,
 	Guidatore INTEGER,
-	In_ricarica /*IDENTIFICATORE DI HUB DI RICARCIA*/,
+	In_ricarica INTEGER,
 	Tratta INTEGER,
 	Testa BOOLEAN,
 
 	FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
 	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
-	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(id),
-
-	CHECK (Stato_batteria>=0 AND Stato_batteria<=100),
+	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(id)
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Autisti;
+DROP TABLE IF EXISTS Autisti;
 CREATE TABLE Autisti(
 	Codice_dipendente INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Nome VARCHAR(255) NOT NULL,
@@ -147,20 +145,20 @@ CREATE TABLE Autisti(
 	Data_di_nascita DATE,
 	Passeggero INTEGER,
 
-	FOREIGN KEY(Passeggero) REFERENCES Veicoli(Targa),
+	FOREIGN KEY(Passeggero) REFERENCES Veicoli(Targa)
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Stazione_di_ricarica;
+DROP TABLE IF EXISTS Stazione_di_ricarica;
 CREATE TABLE Stazione_di_ricarica(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Posizione_x DECIMAL,
 	Posizione_y DECIMAL,
-	Posti_totali INTEGER,
+	Posti_totali INTEGER
 )ENGINE=InnoDB;
 
 
-DROP TABLE IF EXIST Archi;
+DROP TABLE IF EXISTS Archi;
 CREATE TABLE Archi(
 	Entrante INTEGER NOT NULL, /*Esprimere che entrante != uscente*/
 	Uscente INTEGER NOT NULL,
@@ -168,5 +166,5 @@ CREATE TABLE Archi(
 	Peso INTEGER NOT NULL,
 
 	FOREIGN KEY(Entrante) REFERENCES Nodi(Id),
-	FOREIGN KEY(Uscente) REFERENCES Nodi(Id),
+	FOREIGN KEY(Uscente) REFERENCES Nodi(Id)
 )ENGINE=InnoDB;
