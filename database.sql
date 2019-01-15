@@ -9,7 +9,7 @@ CREATE TABLE Utenti(
 	Nome VARCHAR(255) NOT NULL,
 	Cognome VARCHAR(255) NOT NULL,
 	Data_di_nascita DATE NOT NULL
-) ENGINE=InnoDB;
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 /*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
 
@@ -20,7 +20,7 @@ CREATE TABLE Fonte_di_pagamento(
 
 	PRIMARY KEY (Utente, Tipo), -- Solo un tipo per utente?
 	FOREIGN KEY(Utente) REFERENCES Utenti(Id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Corse;
@@ -33,7 +33,7 @@ CREATE TABLE Corse(
 	Destinazione_y INTEGER NOT NULL,
 	Ora_conclusione TIMESTAMP,
 	Prezzo DECIMAL
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Richieste;
@@ -51,7 +51,7 @@ CREATE TABLE Richieste(
 
 	FOREIGN KEY(Utente) REFERENCES Utenti(Id),
 	FOREIGN KEY(Corsa) REFERENCES Corse(Id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Storici;
@@ -62,7 +62,7 @@ CREATE TABLE Storici(
 
 	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
 	FOREIGN KEY(Utente) REFERENCES Utenti(Id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Tratte;
@@ -73,7 +73,7 @@ CREATE TABLE Tratte(
 	Inizio_y INTEGER NOT NULL,
 	Fine_x INTEGER NOT NULL,
 	Fine_y INTEGER NOT NULL
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Associazioni;
@@ -85,7 +85,7 @@ CREATE TABLE Associazioni(
 	PRIMARY KEY(Corsa, Tratta, Posto_occupato),
 	FOREIGN KEY(Corsa) REFERENCES Corse(Id),
 	FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Evento;
@@ -98,14 +98,14 @@ CREATE TABLE Evento(
 
 	FOREIGN KEY(Precedente) REFERENCES Tratte(Id),
 	FOREIGN KEY(Successiva) REFERENCES Tratte(Id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS Nodi;
 CREATE TABLE Nodi(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Latitudine INTEGER NOT NULL,
 	Longitudine INTEGER NOT NULL
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 DROP TABLE IF EXISTS Indicazioni;
 CREATE TABLE Indicazioni(
@@ -116,7 +116,7 @@ CREATE TABLE Indicazioni(
 	PRIMARY KEY(Partenza, Destinazione, Tratta),
 	FOREIGN KEY(Partenza) REFERENCES Nodi(Id), -- vincolo partenza e destinazione diversi?
 	FOREIGN KEY(Destinazione) REFERENCES Nodi(Id) -- vincolo partenza e destinazione diversi?
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Veicoli;
@@ -134,7 +134,7 @@ CREATE TABLE Veicoli(
 	FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
 	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
 	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Autisti;
@@ -146,7 +146,7 @@ CREATE TABLE Autisti(
 	Passeggero INTEGER,
 
 	FOREIGN KEY(Passeggero) REFERENCES Veicoli(Targa)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Stazione_di_ricarica;
@@ -155,7 +155,7 @@ CREATE TABLE Stazione_di_ricarica(
 	Posizione_x DECIMAL,
 	Posizione_y DECIMAL,
 	Posti_totali INTEGER
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 
 DROP TABLE IF EXISTS Archi;
@@ -167,4 +167,4 @@ CREATE TABLE Archi(
 
 	FOREIGN KEY(Entrante) REFERENCES Nodi(Id),
 	FOREIGN KEY(Uscente) REFERENCES Nodi(Id)
-)ENGINE=InnoDB;
+)ENGINE=MyISAM DEFAULT CHARSET=latin1;
