@@ -151,7 +151,7 @@ CREATE TABLE Autisti(
 DROP TABLE IF EXISTS Storico_tratte;
 CREATE TABLE Storico_tratte(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	Tartta INTEGER,
+	Tratta INTEGER,
 	Veicolo INTEGER,
 	Autista INTEGER,
 
