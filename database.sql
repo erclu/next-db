@@ -1,8 +1,8 @@
 /*Progetto Base di Dati 18/19 Ercole Luca e Ferrati Marco*/
 
 /*Creazione tabelle e inserimento valori*/
-DROP TABLE IF EXIST Metodi_di_pagamento;
-CREATE TABLE Metodi_di_pagamento(
+DROP TABLE IF EXIST Fonte_di_pagamento;
+CREATE TABLE Fonte_di_pagamento(
 	Utente INTEGER PRIMARY KEY,
 	Tipo VARCHAR(255),
 
@@ -19,7 +19,7 @@ CREATE TABLE Utenti(
 	Cognome VARCHAR(255) NOT NULL,
 	Data_di_nascita DATE NOT NULL
 )
-
+/*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
 DROP TABLE IF EXIST Richieste;
 CREATE TABLE Richieste(
@@ -31,7 +31,7 @@ CREATE TABLE Richieste(
 	Destinazione_x FLOAT NOT NULL,
 	Destinazione_y FLOAT NOT NULL,
 	Accettata BOOLEAN,
-/**/	Tariffa,
+/*	Tariffa,*/
 	Corsa INTEGER, /**/
 	Utente INTEGER NOT NULL,
 
@@ -90,16 +90,16 @@ CREATE TABLE Tratte(
 )
 
 
-DROP TABLE IF EXIST Fermate;
-CREATE TABLE Fermate(
+DROP TABLE IF EXIST Evento;
+CREATE TABLE Evento(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Precedente INTEGER,
 	Successiva INTEGER,
-	Orario_evento TIMESTAMP,
-	Tipo_evento VARCHAR(255),
+	Orario TIMESTAMP,
+	Tipo VARCHAR(255),
 
-	FOREIGN KEY(Precedente) REFERENCES Fermate(Id),
-	FOREIGN KEY(Successiva) REFERENCES Fermate(Id),
+	FOREIGN KEY(Precedente) REFERENCES Tratte(Id),
+	FOREIGN KEY(Successiva) REFERENCES Tratte(Id),
 )
 
 
@@ -128,7 +128,7 @@ CREATE TABLE Veicoli(
 
 	FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
 	FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
-	FOREIGN KEY(In_ricarica) REFERENCES Hub_di_ricarica(/*identificatore di Hub_di_ricarica*/),
+	FOREIGN KEY(In_ricarica) REFERENCES Stazione_di_ricarica(/*identificatore di Hub_di_ricarica*/),
 )
 
 
@@ -144,9 +144,9 @@ CREATE TABLE Autisti(
 )
 
 
-DROP TABLE IF EXIST Hub_di_ricarica;
+DROP TABLE IF EXIST Stazione_di_ricarica;
 CREATE TABLE Hub_di_ricarica(
-	/*Qaulè l'identificatore primario??*/
+	/*Qaulè l'identificatore primario??*/ /*Aggiungere a veicolo*/
 )
 
 
