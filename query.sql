@@ -1,0 +1,1 @@
+-- Query Progetto Basi di Dati 2018/19 Ercole Luca e Ferrati Marco
