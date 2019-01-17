@@ -15,8 +15,8 @@ CREATE TABLE Utenti(
 /*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
 
-DROP TABLE IF EXISTS Fonti_di_pagamento;
-CREATE TABLE Fonti_di_pagamento(
+DROP TABLE IF EXISTS Metodi_di_pagamento;
+CREATE TABLE Metodi_di_pagamento(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
 	Utente INTEGER,
 	Tipo VARCHAR(255),
@@ -186,7 +186,7 @@ CREATE TABLE Archi(
 SET FOREIGN_KEY_CHECKS=1;
 
 -- Inserimento dei dati
-INSERT INTO Fonti_di_pagamento(Id, Utente, Tipo) VALUES
+INSERT INTO Metodi_di_pagamento(Id, Utente, Tipo) VALUES
 (NULL, 1, "Carta di credito"),
 (NULL, 1, "PayPal"),
 (NULL, 2, "Carta di credito"),
@@ -207,7 +207,6 @@ INSERT INTO Fonti_di_pagamento(Id, Utente, Tipo) VALUES
 (NULL, 9, "PayPal"),
 (NULL, 10, "Carta di credito"),
 (NULL, 10, "GooglePay");
-
 -- Query
 
 --
