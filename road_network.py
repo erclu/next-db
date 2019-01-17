@@ -2,7 +2,7 @@ GRID_SIZE = 50
 WEIGHT = 1
 
 
-def main():
+def create_road_network():
 
     adj_list = {}
 
@@ -35,24 +35,25 @@ def main():
 
     for node_from, value in adj_list.items():
         for node_to in value:
-            edge = "{}, {}, \"{} -> {}\", {} ".format(
+            edge = '{:>5}, {:>5}, "{} -> {}", {}\n'.format(
               node_ids[node_from], node_ids[node_to], node_from, node_to,
               WEIGHT)
 
             edges.append(edge)
 
     for node_coord, node_id in node_ids.items():
-        node = "{}, {}, {}".format(node_id, node_coord[0], node_coord[1])
+        node = "{:>5}, {:>5}, {:>5}\n".format(
+          node_id, node_coord[0], node_coord[1])
         nodes.append(node)
 
-    with open("data/Archi.txt", "w") as file:
-        file.write("from, to, name, weight")
-        file.write("\n".join(edges))
+    with open("data/Archi.csv", "w") as file:
+        file.write("Entrante, Uscente, Nome, Peso\n")
+        file.writelines(edges)
 
-    with open("data/Nodi.txt", "w") as file:
-        file.write("id, lat, lon")
-        file.write("\n".join(nodes))
+    with open("data/Nodi.csv", "w") as file:
+        file.write("Id, Latitudine, Longitudine\n")
+        file.writelines(nodes)
 
 
 if __name__ == "__main__":
-    main()
+    create_road_network()

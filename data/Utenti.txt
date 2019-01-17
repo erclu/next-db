@@ -1,3 +1,0 @@
-Email, Password, Nome, Cognome, Data_di_nascita
-aaaa@bbb.com, password, A, B, 01/01/2000
-aaaa@bbb.com, password, A, B, 01/01/2000
