@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS Utenti;
 CREATE TABLE Utenti(
 	Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-	Email VARCHAR(255) NOT NULL,
+	Email VARCHAR(255) NOT NULL UNIQUE,
 	Password CHAR(64) NOT NULL,
 	Nome VARCHAR(255) NOT NULL,
 	Cognome VARCHAR(255) NOT NULL,
@@ -15,8 +15,8 @@ CREATE TABLE Utenti(
 /*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
 
-DROP TABLE IF EXISTS Fonte_di_pagamento;
-CREATE TABLE Fonte_di_pagamento(
+DROP TABLE IF EXISTS Fonti_di_pagamento;
+CREATE TABLE Fonti_di_pagamento(
 	Utente INTEGER,
 	Tipo VARCHAR(50),
 
