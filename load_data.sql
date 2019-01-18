@@ -1,21 +1,21 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
-TRUNCATE `Archi`;
-TRUNCATE `Associazioni`;
-TRUNCATE `Autisti`;
-TRUNCATE `Corse`;
-TRUNCATE `Eventi`;
-TRUNCATE `Indicazioni`;
-TRUNCATE `Metodi_di_pagamento`;
-TRUNCATE `Nodi`;
-TRUNCATE `Richieste`;
-TRUNCATE `Stazioni_di_ricarica`;
-TRUNCATE `Storico_corse`;
-TRUNCATE `Storico_tratte`;
-TRUNCATE `Tratte`;
-TRUNCATE `Utenti`;
-TRUNCATE `Veicoli`;
+TRUNCATE TABLE `Archi`;
+TRUNCATE TABLE `Associazioni`;
+TRUNCATE TABLE `Autisti`;
+TRUNCATE TABLE `Corse`;
+TRUNCATE TABLE `Eventi`;
+TRUNCATE TABLE `Indicazioni`;
+TRUNCATE TABLE `Metodi_di_pagamento`;
+TRUNCATE TABLE `Nodi`;
+TRUNCATE TABLE `Richieste`;
+TRUNCATE TABLE `Stazioni_di_ricarica`;
+TRUNCATE TABLE `Storico_corse`;
+TRUNCATE TABLE `Storico_tratte`;
+TRUNCATE TABLE `Tratte`;
+TRUNCATE TABLE `Utenti`;
+TRUNCATE TABLE `Veicoli`;
 
 SET FOREIGN_KEY_CHECKS=1;
 
