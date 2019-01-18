@@ -151,7 +151,7 @@ CREATE TABLE Veicoli(
 
   FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
-  FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(id)
+  FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(Id)
 ) Engine=InnoDB;
 
 
@@ -169,9 +169,9 @@ CREATE TABLE Autisti(
 
 CREATE TABLE Storico_tratte(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Tratta INTEGER,
-  Veicolo INTEGER,
-  Autista INTEGER,
+  Tratta INTEGER NOT NULL,
+  Veicolo INTEGER NOT NULL,
+  Autista INTEGER NOT NULL,
 
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
   FOREIGN KEY(Veicolo) REFERENCES Veicoli(Targa),
@@ -184,7 +184,7 @@ CREATE TABLE Stazioni_di_ricarica(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Posizione_x DECIMAL(3,1) NOT NULL,
   Posizione_y DECIMAL(3,1) NOT NULL,
-  Posti_totali INTEGER,
+  Posti_totali INTEGER NOT NULL,
 
   CONSTRAINT CHK_Posizione CHECK(TRUNCATE(Posizione_x,0)=Posizione_x OR TRUNCATE(Posizione_y,0)=Posizione_y)
 ) Engine=InnoDB;
@@ -194,10 +194,10 @@ CREATE TABLE Stazioni_di_ricarica(
 CREATE TABLE Archi(
   Entrante INTEGER NOT NULL, /*Esprimere che entrante != uscente*/
   Uscente INTEGER NOT NULL,
-  Nome VARCHAR(255),
+  Nome VARCHAR(255) NOT NULL,
   Peso INTEGER NOT NULL,
 
-  PRIMARY KEY (Entrante, Uscente),
+  PRIMARY KEY(Entrante, Uscente),
   FOREIGN KEY(Entrante) REFERENCES Nodi(Id),
   FOREIGN KEY(Uscente) REFERENCES Nodi(Id)
 ) Engine=InnoDB;
