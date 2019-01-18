@@ -47,7 +47,7 @@ LOAD DATA LOCAL INFILE 'data/Archi.csv' INTO TABLE Archi
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'data/Stazioni_di_ricarica.csv' INTO TABLE Stazioni_di_ricaric
+LOAD DATA LOCAL INFILE 'data/Stazioni_di_ricarica.csv' INTO TABLE Stazioni_di_ricarica
   FIELDS TERMINATED BY ','
   OPTIONALLY ENCLOSED BY '"'
   ESCAPED BY '"'
