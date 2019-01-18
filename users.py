@@ -2,7 +2,7 @@ from hashlib import sha256
 
 HOW_MANY = 10
 
-PASSWORD = sha256("password").hexdigest()
+PASSWORD = sha256("password".encode('utf-8')).hexdigest()
 NAME = "nome"
 SURNAME = "cognome"
 DOB = "2000-01-01"
