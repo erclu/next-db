@@ -6,7 +6,7 @@ SET FOREIGN_KEY_CHECKS=0;
 
 DROP TABLE IF EXISTS Archi, Associazioni, Autisti, Corse, Eventi, Indicazioni, Metodi_di_pagamento, Nodi, Richieste, Stazioni_di_ricarica, Storico_corse, Storico_tratte, Tratte, Utenti, Veicoli;
 
-SET FOREIGN_KEY_CHECKS=1;
+-- SET FOREIGN_KEY_CHECKS=1;
 
 /*Creazione tabelle e inserimento valori*/
 
