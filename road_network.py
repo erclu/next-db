@@ -35,22 +35,21 @@ def create_road_network():
 
     for node_from, value in adj_list.items():
         for node_to in value:
-            edge = '{:>5}, {:>5}, "{} -> {}", {}\n'.format(
+            edge = '{},{},"{} -> {}",{}\n'.format(
               node_ids[node_from], node_ids[node_to], node_from, node_to,
               WEIGHT)
 
             edges.append(edge)
 
     for node_coord, node_id in node_ids.items():
-        node = "{:>5}, {:>5}, {:>5}\n".format(
-          node_id, node_coord[0], node_coord[1])
+        node = "{},{},{}\n".format(node_id, node_coord[0], node_coord[1])
         nodes.append(node)
 
-    with open("data/Archi.csv", "w") as file:
+    with open("data/Archi.csv", "w", newline='\n') as file:
         file.write("Entrante, Uscente, Nome, Peso\n")
         file.writelines(edges)
 
-    with open("data/Nodi.csv", "w") as file:
+    with open("data/Nodi.csv", "w", newline='\n') as file:
         file.write("Id, Latitudine, Longitudine\n")
         file.writelines(nodes)
 
