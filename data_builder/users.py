@@ -1,6 +1,5 @@
 from hashlib import sha256
-
-from .utils import custom_csv_writer, custom_open, get_data_dir
+from .utils import write_to_file
 
 HOW_MANY_USERS = 10
 
@@ -11,10 +10,10 @@ DOB = "2000-01-01"
 
 
 def create_files():
-    data_dir = get_data_dir()
+    users = [("Id", "Email", "Password", "Nome", "Cognome", "Data_di_nascita")]
 
-    users = []
     payment_methods = (
+      ("Id", "Utente", "Tipo"),
       ("NULL", 1, "Carta di credito"),
       ("NULL", 1, "PayPal"),
       ("NULL", 2, "Carta di credito"),
@@ -44,17 +43,8 @@ def create_files():
 
         users.append(user)
 
-    with custom_open(data_dir/"Utenti.csv") as file:
-        file.write("Id, Email, Password, Nome, Cognome, Data_di_nascita\n")
-
-        writer = custom_csv_writer(file)
-        writer.writerows(users)
-
-    with custom_open(data_dir/"Metodi_di_pagamento.csv") as file:
-        file.write("Id, Utente, Tipo\n")
-
-        writer = custom_csv_writer(file)
-        writer.writerows(payment_methods)
+    write_to_file("Utenti.csv", users)
+    write_to_file("Metodi_di_pagamento.csv", payment_methods)
 
 
 if __name__ == "__main__":

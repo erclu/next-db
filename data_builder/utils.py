@@ -5,13 +5,9 @@ from random import Random
 
 DATA_DIR: Path = Path(__file__).parent.parent/"data"
 
-
-def get_data_dir() -> Path:
-    if not DATA_DIR.exists():
-        print("creating data folder")
-        DATA_DIR.mkdir()
-
-    return DATA_DIR
+if not DATA_DIR.exists():
+    print("creating data folder")
+    DATA_DIR.mkdir()
 
 
 def get_seeded_random():
@@ -20,13 +16,22 @@ def get_seeded_random():
 
 def custom_csv_writer(fileobj):
     return csv.writer(
-      fileobj, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
+      fileobj,
+      delimiter=',',
+      quotechar='"',
+      quoting=csv.QUOTE_MINIMAL,
+      lineterminator='\n')
 
 
 @contextmanager
 def custom_open(filename):
-    file = open(filename, "w", encoding="utf-8", newline='\n')
+    file = open(DATA_DIR/filename, "w", encoding="utf-8", newline='\n')
     try:
         yield file
     finally:
         file.close()
+
+
+def write_to_file(filename, rows):
+    with custom_open(filename) as file:
+        custom_csv_writer(file).writerows(rows)

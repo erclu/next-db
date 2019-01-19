@@ -1,19 +1,16 @@
-from .utils import custom_csv_writer, custom_open, get_data_dir
+from .utils import write_to_file
 
 GRID_SIZE = 50
 WEIGHT = 1
 
 
 def create_files():
-    data_dir = get_data_dir()
+    edges = [("Entrante", "Uscente", "Nome", "Peso")]
+    nodes = [("Id", "Latitudine", "Longitudine")]
 
     adj_list = {}
-
     node_ids = {}
     counter = 1
-
-    edges = []
-    nodes = []
 
     for i in range(GRID_SIZE):
         for j in range(GRID_SIZE):
@@ -48,17 +45,9 @@ def create_files():
         node = (node_id, node_coord[0], node_coord[1])
         nodes.append(node)
 
-    with custom_open(data_dir/"Archi.csv") as file:
-        file.write("Entrante, Uscente, Nome, Peso\n")
+    write_to_file("Archi.csv", edges)
 
-        writer = custom_csv_writer(file)
-        writer.writerows(edges)
-
-    with custom_open(data_dir/"Nodi.csv") as file:
-        file.write("Id, Latitudine, Longitudine\n")
-
-        writer = custom_csv_writer(file)
-        writer.writerows(nodes)
+    write_to_file("Nodi.csv", nodes)
 
 
 if __name__ == "__main__":

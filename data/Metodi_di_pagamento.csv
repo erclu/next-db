@@ -1,21 +1,21 @@
-Id, Utente, Tipo
-NULL,1,"Carta di credito"
-NULL,1,"PayPal"
-NULL,2,"Carta di credito"
-NULL,2,"ApplePay"
-NULL,3,"Carta di credito"
-NULL,3,"PayPal"
-NULL,4,"Carta di credito"
-NULL,4,"GooglePay"
-NULL,5,"Carta di credito"
-NULL,5,"ApplePay"
-NULL,6,"Carta di credito"
-NULL,6,"GooglePay"
-NULL,7,"Carta di credito"
-NULL,7,"PayPal"
-NULL,8,"Carta di credito"
-NULL,8,"ApplePay"
-NULL,9,"Carta di credito"
-NULL,9,"PayPal"
-NULL,10,"Carta di credito"
-NULL,10,"GooglePay"
+Id,Utente,Tipo
+NULL,1,Carta di credito
+NULL,1,PayPal
+NULL,2,Carta di credito
+NULL,2,ApplePay
+NULL,3,Carta di credito
+NULL,3,PayPal
+NULL,4,Carta di credito
+NULL,4,GooglePay
+NULL,5,Carta di credito
+NULL,5,ApplePay
+NULL,6,Carta di credito
+NULL,6,GooglePay
+NULL,7,Carta di credito
+NULL,7,PayPal
+NULL,8,Carta di credito
+NULL,8,ApplePay
+NULL,9,Carta di credito
+NULL,9,PayPal
+NULL,10,Carta di credito
+NULL,10,GooglePay

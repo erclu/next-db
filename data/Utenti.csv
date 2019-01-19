@@ -1,4 +1,4 @@
-Id, Email, Password, Nome, Cognome, Data_di_nascita
+Id,Email,Password,Nome,Cognome,Data_di_nascita
 1,nome.cognome.1@email.it,5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8,nome,cognome,2000-01-01
 2,nome.cognome.2@email.it,5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8,nome,cognome,2000-01-01
 3,nome.cognome.3@email.it,5e884898da28047151d0e56f8dc6292773603d0d6aabbdd62a11ef721d1542d8,nome,cognome,2000-01-01
