@@ -20,8 +20,6 @@ CREATE TABLE Utenti(
 ) Engine=InnoDB;
 /*Nota, all'inserimento mettere il campo password cifrato (con la funzione encode?)*/
 
-
-
 CREATE TABLE Metodi_di_pagamento(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Utente INTEGER,
@@ -29,8 +27,6 @@ CREATE TABLE Metodi_di_pagamento(
 
   FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 ) Engine=InnoDB;
-
-
 
 CREATE TABLE Corse(
   Id INTEGER AUTO_INCREMENT PRIMARY KEY,
@@ -44,8 +40,6 @@ CREATE TABLE Corse(
 
   CHECK(Prezzo>0)
 ) Engine=InnoDB;
-
-
 
 CREATE TABLE Richieste(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -66,8 +60,6 @@ CREATE TABLE Richieste(
   FOREIGN KEY(Corsa) REFERENCES Corse(Id)
 ) Engine=InnoDB;
 
-
-
 CREATE TABLE Storico_corse(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Corsa INTEGER NOT NULL,
@@ -76,8 +68,6 @@ CREATE TABLE Storico_corse(
   FOREIGN KEY(Corsa) REFERENCES Corse(Id),
   FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 ) Engine=InnoDB;
-
-
 
 CREATE TABLE Tratte(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -91,8 +81,6 @@ CREATE TABLE Tratte(
   CONSTRAINT CHK_Fine CHECK(TRUNCATE(Fine_x,0)=Fine_x OR TRUNCATE(Fine_y,0)=Fine_y)
 ) Engine=InnoDB;
 
-
-
 CREATE TABLE Associazioni(
   Corsa INTEGER NOT NULL,
   Tratta INTEGER NOT NULL,
@@ -102,8 +90,6 @@ CREATE TABLE Associazioni(
   FOREIGN KEY(Corsa) REFERENCES Corse(Id),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
-
-
 
 CREATE TABLE Eventi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -116,13 +102,11 @@ CREATE TABLE Eventi(
   FOREIGN KEY(Successiva) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
-
 CREATE TABLE Nodi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Latitudine INTEGER NOT NULL,
   Longitudine INTEGER NOT NULL
 ) Engine=InnoDB;
-
 
 CREATE TABLE Indicazioni(
   Partenza INTEGER NOT NULL,
@@ -134,27 +118,25 @@ CREATE TABLE Indicazioni(
   FOREIGN KEY(Destinazione) REFERENCES Nodi(Id) -- vincolo partenza e destinazione diversi?
 ) Engine=InnoDB;
 
-
-
 CREATE TABLE Veicoli(
-  Targa INTEGER PRIMARY KEY,
+  Targa INTEGER PRIMARY KEY AUTO_INCREMENT,
   Stato_batteria INTEGER NOT NULL,
   Posizione_x INTEGER NOT NULL,
   Posizione_y INTEGER NOT NULL,
-  Tipo VARCHAR(255) NOT NULL,
+  Tipo VARCHAR(255) NOT NULL DEFAULT "Trasporto persone",
   Guidatore INTEGER,
   In_ricarica INTEGER,
   Tratta INTEGER,
   Testa BOOLEAN,
 
   CHECK(Stato_batteria>=0 AND Stato_batteria<=100),
+  CHECK(Tipo="Trasporto persone" OR Tipo="Trasporto merci" OR Tipo="Servizi" OR Tipo="Battery pack"),
+  CHECK((Tratta IS NULL AND TESTA IS NULL) OR (Tratta IS NOT NULL AND Testa IS NOT NULL)),
 
   FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
   FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(Id)
 ) Engine=InnoDB;
-
-
 
 CREATE TABLE Autisti(
   Codice_dipendente INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -165,7 +147,6 @@ CREATE TABLE Autisti(
 
   FOREIGN KEY(Passeggero) REFERENCES Veicoli(Targa)
 ) Engine=InnoDB;
-
 
 CREATE TABLE Storico_tratte(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -178,8 +159,6 @@ CREATE TABLE Storico_tratte(
   FOREIGN KEY(Autista) REFERENCES Autisti(Codice_dipendente)
 ) Engine=InnoDB;
 
-
-
 CREATE TABLE Stazioni_di_ricarica(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Posizione_x DECIMAL(3,1) NOT NULL,
@@ -189,13 +168,13 @@ CREATE TABLE Stazioni_di_ricarica(
   CONSTRAINT CHK_Posizione CHECK(TRUNCATE(Posizione_x,0)=Posizione_x OR TRUNCATE(Posizione_y,0)=Posizione_y)
 ) Engine=InnoDB;
 
-
-
 CREATE TABLE Archi(
-  Entrante INTEGER NOT NULL, /*Esprimere che entrante != uscente*/
+  Entrante INTEGER NOT NULL,
   Uscente INTEGER NOT NULL,
   Nome VARCHAR(255) NOT NULL,
   Peso INTEGER NOT NULL,
+
+  CHECK(Entrante<>Uscente),
 
   PRIMARY KEY(Entrante, Uscente),
   FOREIGN KEY(Entrante) REFERENCES Nodi(Id),

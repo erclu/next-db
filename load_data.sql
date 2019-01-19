@@ -33,6 +33,13 @@ LOAD DATA LOCAL INFILE 'data/Metodi_di_pagamento.csv' INTO TABLE Metodi_di_pagam
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
 
+-- Corse
+-- Richieste
+-- Storico_corse
+-- Tratte
+-- Associazioni
+-- Eventi
+-- Nodi
 LOAD DATA LOCAL INFILE 'data/Nodi.csv' INTO TABLE Nodi
   FIELDS TERMINATED BY ','
   OPTIONALLY ENCLOSED BY '"'
@@ -40,6 +47,26 @@ LOAD DATA LOCAL INFILE 'data/Nodi.csv' INTO TABLE Nodi
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
 
+-- Indicazioni
+-- Veicoli
+LOAD DATA LOCAL INFILE 'data/Veicoli.csv' INTO TABLE Veicoli 
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  ESCAPED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 LINES;
+
+-- Autisti
+-- Storico_tratte
+-- Stazioni_di_ricarica
+LOAD DATA LOCAL INFILE 'data/Stazioni_di_ricarica.csv' INTO TABLE Stazioni_di_ricarica
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  ESCAPED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 LINES;
+
+-- Archi
 LOAD DATA LOCAL INFILE 'data/Archi.csv' INTO TABLE Archi
   FIELDS TERMINATED BY ','
   OPTIONALLY ENCLOSED BY '"'
@@ -47,9 +74,3 @@ LOAD DATA LOCAL INFILE 'data/Archi.csv' INTO TABLE Archi
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
 
-LOAD DATA LOCAL INFILE 'data/Stazioni_di_ricarica.csv' INTO TABLE Stazioni_di_ricarica
-  FIELDS TERMINATED BY ','
-  OPTIONALLY ENCLOSED BY '"'
-  ESCAPED BY '"'
-  LINES TERMINATED BY '\n'
-  IGNORE 1 LINES;
