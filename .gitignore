@@ -1,8 +1,9 @@
 .vscode
 
 # file python
+__pycache__
+env
 .pylintrc
 .style.yapf
-env
 
 bdd_project.sh
