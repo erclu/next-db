@@ -57,6 +57,13 @@ LOAD DATA LOCAL INFILE 'data/Veicoli.csv' INTO TABLE Veicoli
   IGNORE 1 LINES;
 
 -- Autisti
+LOAD DATA LOCAL INFILE 'data/Autisti.csv' INTO TABLE Autisti
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  ESCAPED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 LINES;
+  
 -- Storico_tratte
 -- Stazioni_di_ricarica
 LOAD DATA LOCAL INFILE 'data/Stazioni_di_ricarica.csv' INTO TABLE Stazioni_di_ricarica

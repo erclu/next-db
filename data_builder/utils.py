@@ -33,5 +33,6 @@ def custom_open(filename):
 
 
 def write_to_file(filename, rows):
+    # print("creating {}".format(filename))
     with custom_open(filename) as file:
         custom_csv_writer(file).writerows(rows)
