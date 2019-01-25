@@ -111,19 +111,6 @@ CREATE TABLE Stazioni_di_ricarica(
   CHECK(TRUNCATE(Posizione_x, 0)=Posizione_x OR TRUNCATE(Posizione_y, 0)=Posizione_y)
 ) Engine=InnoDB;
 
-CREATE TABLE Autisti(
-  Codice_dipendente INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Nome VARCHAR(255) NOT NULL,
-  Cognome VARCHAR(255) NOT NULL,
-  Data_di_nascita DATE NOT NULL,
-  Veicolo INTEGER,
-  Alla_guida BOOLEAN,
-
-  CHECK((Veicolo IS NULL AND Alla_guida IS NULL) OR (Veicolo IS NOT NULL AND Alla_guida IS NOT NULL)),
-
-  FOREIGN KEY(Veicolo) REFERENCES Veicoli(Targa)
-) Engine=InnoDB;
-
 CREATE TABLE Veicoli(
   Targa INTEGER PRIMARY KEY AUTO_INCREMENT,
   Stato_batteria INTEGER NOT NULL,
@@ -141,6 +128,19 @@ CREATE TABLE Veicoli(
 
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
   FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(Id)
+) Engine=InnoDB;
+
+CREATE TABLE Autisti(
+  Codice_dipendente INTEGER PRIMARY KEY AUTO_INCREMENT,
+  Nome VARCHAR(255) NOT NULL,
+  Cognome VARCHAR(255) NOT NULL,
+  Data_di_nascita DATE NOT NULL,
+  Veicolo INTEGER,
+  Alla_guida BOOLEAN,
+
+  CHECK((Veicolo IS NULL AND Alla_guida IS NULL) OR (Veicolo IS NOT NULL AND Alla_guida IS NOT NULL)),
+
+  FOREIGN KEY(Veicolo) REFERENCES Veicoli(Targa)
 ) Engine=InnoDB;
 
 CREATE TABLE Storico_tratte(
