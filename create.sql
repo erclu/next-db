@@ -102,23 +102,26 @@ CREATE TABLE Eventi(
   FOREIGN KEY(Successiva) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
-CREATE TABLE Nodi(
+CREATE TABLE Stazioni_di_ricarica(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Latitudine INTEGER NOT NULL,
-  Longitudine INTEGER NOT NULL
+  Posizione_x DECIMAL(3, 1) NOT NULL,
+  Posizione_y DECIMAL(3, 1) NOT NULL,
+  Posti_totali INTEGER NOT NULL,
+
+  CHECK(TRUNCATE(Posizione_x, 0)=Posizione_x OR TRUNCATE(Posizione_y, 0)=Posizione_y)
 ) Engine=InnoDB;
 
-CREATE TABLE Indicazioni(
-  Partenza INTEGER NOT NULL,
-  Destinazione INTEGER NOT NULL,
-  Tratta INTEGER NOT NULL,
+CREATE TABLE Autisti(
+  Codice_dipendente INTEGER PRIMARY KEY AUTO_INCREMENT,
+  Nome VARCHAR(255) NOT NULL,
+  Cognome VARCHAR(255) NOT NULL,
+  Data_di_nascita DATE NOT NULL,
+  Veicolo INTEGER,
+  Alla_guida BOOLEAN,
 
-  CHECK(Partenza<>Destinazione),
+  CHECK((Veicolo IS NULL AND Alla_guida IS NULL) OR (Veicolo IS NOT NULL AND Alla_guida IS NOT NULL)),
 
-  PRIMARY KEY(Partenza, Destinazione, Tratta),
-  FOREIGN KEY(Partenza) REFERENCES Nodi(Id),
-  FOREIGN KEY(Destinazione) REFERENCES Nodi(Id),
-  FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
+  FOREIGN KEY(Veicolo) REFERENCES Veicoli(Targa)
 ) Engine=InnoDB;
 
 CREATE TABLE Veicoli(
@@ -140,19 +143,6 @@ CREATE TABLE Veicoli(
   FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(Id)
 ) Engine=InnoDB;
 
-CREATE TABLE Autisti(
-  Codice_dipendente INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Nome VARCHAR(255) NOT NULL,
-  Cognome VARCHAR(255) NOT NULL,
-  Data_di_nascita DATE NOT NULL,
-  Veicolo INTEGER,
-  Alla_guida BOOLEAN,
-
-  CHECK((Veicolo IS NULL AND Alla_guida IS NULL) OR (Veicolo IS NOT NULL AND Alla_guida IS NOT NULL)),
-
-  FOREIGN KEY(Veicolo) REFERENCES Veicoli(Targa)
-) Engine=InnoDB;
-
 CREATE TABLE Storico_tratte(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Tratta INTEGER NOT NULL,
@@ -164,13 +154,10 @@ CREATE TABLE Storico_tratte(
   FOREIGN KEY(Autista) REFERENCES Autisti(Codice_dipendente)
 ) Engine=InnoDB;
 
-CREATE TABLE Stazioni_di_ricarica(
+CREATE TABLE Nodi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Posizione_x DECIMAL(3, 1) NOT NULL,
-  Posizione_y DECIMAL(3, 1) NOT NULL,
-  Posti_totali INTEGER NOT NULL,
-
-  CHECK(TRUNCATE(Posizione_x, 0)=Posizione_x OR TRUNCATE(Posizione_y, 0)=Posizione_y)
+  Latitudine INTEGER NOT NULL,
+  Longitudine INTEGER NOT NULL
 ) Engine=InnoDB;
 
 CREATE TABLE Archi(
@@ -184,4 +171,17 @@ CREATE TABLE Archi(
   PRIMARY KEY(Entrante, Uscente),
   FOREIGN KEY(Entrante) REFERENCES Nodi(Id),
   FOREIGN KEY(Uscente) REFERENCES Nodi(Id)
+) Engine=InnoDB;
+
+CREATE TABLE Indicazioni(
+  Partenza INTEGER NOT NULL,
+  Destinazione INTEGER NOT NULL,
+  Tratta INTEGER NOT NULL,
+
+  CHECK(Partenza<>Destinazione),
+
+  PRIMARY KEY(Partenza, Destinazione, Tratta),
+  FOREIGN KEY(Partenza) REFERENCES Nodi(Id),
+  FOREIGN KEY(Destinazione) REFERENCES Nodi(Id),
+  FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
