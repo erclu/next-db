@@ -54,7 +54,7 @@ CREATE TABLE Richieste(
   Utente INTEGER NOT NULL,
 
   CHECK(TRUNCATE(Origine_x, 0)=Origine_x OR TRUNCATE(Origine_y, 0)=Origine_y),
-  CHECK(TRUNCATE(Destinazione_x, 0)=Destinazione_x OR TRUNCATE(Destinazione_y, 0)=Destinazione_y)
+  CHECK(TRUNCATE(Destinazione_x, 0)=Destinazione_x OR TRUNCATE(Destinazione_y, 0)=Destinazione_y),
 
   FOREIGN KEY(Utente) REFERENCES Utenti(Id),
   FOREIGN KEY(Corsa) REFERENCES Corse(Id)
@@ -116,8 +116,9 @@ CREATE TABLE Indicazioni(
   CHECK(Partenza<>Destinazione),
 
   PRIMARY KEY(Partenza, Destinazione, Tratta),
-  FOREIGN KEY(Partenza) REFERENCES Nodi(Id), -- vincolo partenza e destinazione diversi?
-  FOREIGN KEY(Destinazione) REFERENCES Nodi(Id) -- vincolo partenza e destinazione diversi?
+  FOREIGN KEY(Partenza) REFERENCES Nodi(Id),
+  FOREIGN KEY(Destinazione) REFERENCES Nodi(Id),
+  FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
 CREATE TABLE Veicoli(
@@ -126,7 +127,6 @@ CREATE TABLE Veicoli(
   Posizione_x DECIMAL(3, 1) NOT NULL,
   Posizione_y DECIMAL(3, 1) NOT NULL,
   Tipo VARCHAR(255) NOT NULL DEFAULT "Trasporto persone",
-  Guidatore INTEGER,
   In_ricarica INTEGER,
   Tratta INTEGER,
   Testa BOOLEAN,
@@ -134,9 +134,8 @@ CREATE TABLE Veicoli(
   CHECK(Stato_batteria>=0 AND Stato_batteria<=100),
   CHECK(TRUNCATE(Posizione_x, 0)=Posizione_x OR TRUNCATE(Posizione_y, 0)=Posizione_y),
   CHECK(Tipo="Trasporto persone" OR Tipo="Trasporto merci" OR Tipo="Servizi" OR Tipo="Battery pack"),
-  CHECK((Tratta IS NULL AND TESTA IS NULL) OR (Tratta IS NOT NULL AND Testa IS NOT NULL)),
+  CHECK((Tratta IS NULL AND Testa IS NULL) OR (Tratta IS NOT NULL AND Testa IS NOT NULL)),
 
-  FOREIGN KEY(Guidatore) REFERENCES Autisti(Codice_dipendente),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id),
   FOREIGN KEY(In_ricarica) REFERENCES Stazioni_di_ricarica(Id)
 ) Engine=InnoDB;
@@ -146,9 +145,12 @@ CREATE TABLE Autisti(
   Nome VARCHAR(255) NOT NULL,
   Cognome VARCHAR(255) NOT NULL,
   Data_di_nascita DATE NOT NULL,
-  Passeggero INTEGER,
+  Veicolo INTEGER,
+  Alla_guida BOOLEAN,
 
-  FOREIGN KEY(Passeggero) REFERENCES Veicoli(Targa)
+  CHECK((Veicolo IS NULL AND Alla_guida IS NULL) OR (Veicolo IS NOT NULL AND Alla_guida IS NOT NULL)),
+
+  FOREIGN KEY(Veicolo) REFERENCES Veicoli(Targa)
 ) Engine=InnoDB;
 
 CREATE TABLE Storico_tratte(
