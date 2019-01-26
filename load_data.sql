@@ -82,7 +82,7 @@ LOAD DATA LOCAL INFILE 'data/Archi.csv' INTO TABLE Archi
   IGNORE 1 LINES;
 
 -- Richieste TEST
-LOAD DATA LOCAL INFILE 'data_builder/Richieste.csv' INTO TABLE Archi
+LOAD DATA LOCAL INFILE 'data_builder/Richieste.csv' INTO TABLE Richieste
   FIELDS TERMINATED BY ','
   OPTIONALLY ENCLOSED BY '"'
   ESCAPED BY '"'
