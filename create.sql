@@ -36,7 +36,7 @@ CREATE TABLE Corse(
   Destinazione_x INTEGER NOT NULL,
   Destinazione_y INTEGER NOT NULL,
   Ora_conclusione TIMESTAMP,
-  Prezzo DECIMAL(10, 2) NOT NULL,
+  Prezzo DECIMAL(10, 2),
 
   CHECK(Prezzo>0)
 ) Engine=InnoDB;
