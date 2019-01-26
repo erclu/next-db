@@ -49,7 +49,7 @@ LOAD DATA LOCAL INFILE 'data/Nodi.csv' INTO TABLE Nodi
 
 -- Indicazioni
 -- Veicoli
-LOAD DATA LOCAL INFILE 'data/Veicoli.csv' INTO TABLE Veicoli 
+LOAD DATA LOCAL INFILE 'data/Veicoli.csv' INTO TABLE Veicoli
   FIELDS TERMINATED BY ','
   OPTIONALLY ENCLOSED BY '"'
   ESCAPED BY '"'
@@ -63,7 +63,7 @@ LOAD DATA LOCAL INFILE 'data/Autisti.csv' INTO TABLE Autisti
   ESCAPED BY '"'
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
-  
+
 -- Storico_tratte
 -- Stazioni_di_ricarica
 LOAD DATA LOCAL INFILE 'data/Stazioni_di_ricarica.csv' INTO TABLE Stazioni_di_ricarica
@@ -81,3 +81,10 @@ LOAD DATA LOCAL INFILE 'data/Archi.csv' INTO TABLE Archi
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
 
+-- Richieste TEST
+LOAD DATA LOCAL INFILE 'data_builder/Richieste.csv' INTO TABLE Archi
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  ESCAPED BY '"'
+  LINES TERMINATED BY '\n'
+  IGNORE 1 LINES;
