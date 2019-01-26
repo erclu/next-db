@@ -12,7 +12,8 @@ def create_files():
     random = get_seeded_random()
 
     drivers = [(
-      "Codice_dipendente", "Nome", "Cognome", "Data_di_nascita", "Passeggero")]
+      "Codice_dipendente", "Nome", "Cognome", "Data_di_nascita", "Veicolo",
+      "Alla_guida")]
 
     hubs = (
       ("Id", "Posizione_x", "Posizione_y", "Posti_totali"),
@@ -25,7 +26,7 @@ def create_files():
 
     vehicles = [(
       "Targa", "Stato_batteria", "Posizione_x", "Posizione_y", "Tipo",
-      "Guidatore", "In_ricarica", "Tratta", "Testa")]
+      "In_ricarica", "Tratta", "Testa")]
 
     vehicle_types = [
       "Trasporto persone", "Trasporto persone", "Trasporto persone",
@@ -45,13 +46,12 @@ def create_files():
           "NULL",
           "NULL",
           "NULL",
-          "NULL",
         )
 
         vehicles.append(vehicle)
 
     for i in range(1, HOW_MANY_DRIVERS + 1):
-        driver = (i, NAME + str(i), SURNAME + str(i), DOB, "NULL")
+        driver = (i, NAME + str(i), SURNAME + str(i), DOB, "NULL", "NULL")
 
         drivers.append(driver)
 
