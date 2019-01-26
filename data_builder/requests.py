@@ -15,10 +15,10 @@ def create_files():
         "Corsa",
         "Utente",
       ),
-      ("NULL", "NULL", "NULL", 1, 37, 1, 20, "NULL", "NULL", 1),
-      ("NULL", "NULL", "NULL", 14, 14, 1, 20, "NULL", "NULL", 2),
-      ("NULL", "NULL", "NULL", 1, 45, 1, 20, "NULL", "NULL", 3),
-      ("NULL", "NULL", "NULL", 46, 7, 1, 20, "NULL", "NULL", 4),
+      ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 1),
+      ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 2),
+      ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 3),
+      #   ("NULL", "NULL", "NULL", 46, 7, 40, 12, "NULL", "NULL", 4),
     ]
 
     write_to_file("Richieste.csv", requests)
