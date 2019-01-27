@@ -1,0 +1,3 @@
+Id,Orario_partenza,Origine_x,Origine_y,Destinazione_x,Destinazione_y,Ora_conclusione,Prezzo
+1,2019-01-10 00:00:00,30,20,30,1,2019-01-10 00:30:00,3.5
+2,NULL,47,5,47,15,NULL,NULL

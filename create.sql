@@ -35,7 +35,7 @@ CREATE TABLE Corse(
   Origine_y INTEGER NOT NULL,
   Destinazione_x INTEGER NOT NULL,
   Destinazione_y INTEGER NOT NULL,
-  Ora_conclusione TIMESTAMP,
+  Ora_conclusione TIMESTAMP NULL DEFAULT NULL,
   Prezzo DECIMAL(10, 2),
 
   CHECK(Prezzo>0)

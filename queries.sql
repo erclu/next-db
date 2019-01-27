@@ -8,8 +8,7 @@ SELECT
     r.Origine_x AS R_x,
     r.Origine_y AS R_y,
     v.Targa,
-    ABS(r.Origine_x - v.Posizione_x) AS Distanza_x,
-    ABS(r.Origine_y - v.Posizione_y) AS Distanza_y,
+    ABS(r.Origine_x - v.Posizione_x) + ABS(r.Origine_y - v.Posizione_y) AS Distanza,
     v.Posizione_x AS V_x,
     v.Posizione_y AS V_y
 FROM
@@ -22,5 +21,4 @@ GROUP BY
     v.Targa
 ORDER BY
     r.Id,
-    Distanza_x,
-    Distanza_y;
+    Distanza
