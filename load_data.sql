@@ -6,7 +6,7 @@ TRUNCATE TABLE `Associazioni`;
 TRUNCATE TABLE `Autisti`;
 TRUNCATE TABLE `Corse`;
 TRUNCATE TABLE `Eventi`;
-TRUNCATE TABLE `EventiTratte`
+TRUNCATE TABLE `EventiTratte`;
 TRUNCATE TABLE `Cammini`;
 TRUNCATE TABLE `Metodi_di_pagamento`;
 TRUNCATE TABLE `Nodi`;
