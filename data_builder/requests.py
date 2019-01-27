@@ -27,7 +27,6 @@ def create_files():
       ("NULL", req_time, start_time, 45, 20, 45, 1, 1, 1, 1), #R_alice
       ("NULL", req_time, start_time, 45, 20, 35, 10, 1, 2, 2), #R_bob
       ("NULL", req_time, start_time, 30, 15, 45, 1, 1, 3, 3), #R_charlie
-      (),
       # da completare:
       ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 4, 5),
     ]
