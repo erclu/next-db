@@ -96,7 +96,7 @@ CREATE TABLE Eventi(
   Orario TIMESTAMP NOT NULL,
   Tipo VARCHAR(255) NOT NULL
 
-  --TODO check sul tipo?
+  -- TODO check sul tipo?
 ) Engine=InnoDB;
 
 CREATE TABLE EventiTratte(
