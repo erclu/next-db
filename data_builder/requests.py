@@ -15,16 +15,16 @@ def create_files():
         "Corsa",
         "Utente",
       ),
-      ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 1),
-      ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 2),
-      ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 3),
+      ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 6),
+      ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 7),
+      ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 8),
       # completata:
       ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 45, 20, 45, 1, 1, 1, 1), #R_alice, id:3
       ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 45, 20, 35, 10, 1, 2, 2), #R_bob, id:4
       ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 30, 15, 45, 1, 1, 3, 3), #R_charlie, id:5
       (),
       # da completare:
-      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 2, 5),
+      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 4, 5),
     ]
 
     rides = [
