@@ -94,7 +94,7 @@ CREATE TABLE Associazioni(
 CREATE TABLE Eventi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Orario TIMESTAMP,
-  Tipo VARCHAR(255),
+  Tipo VARCHAR(255)
 ) Engine=InnoDB;
 
 CREATE TABLE EventiTratte(
