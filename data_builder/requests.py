@@ -86,8 +86,8 @@ def create_files():
       (2, "2019-01-10 00:00:00", "Salita"),
       (3, "2019-01-10 00:15:00", "Transfer"),
       (4, "2019-01-10 00:30:00", "Transfer"),
-      (5, "2019-01-10 00:45:00", "Discesa")
-      (6, "2019-01-10 00:45:00", "Discesa")
+      (5, "2019-01-10 00:45:00", "Discesa"),
+      (6, "2019-01-10 00:45:00", "Discesa"),
       #In corso
       ("NULL", "NULL", 3, "NULL", "Salita")
     ] #TODO finish??
@@ -116,6 +116,7 @@ def create_files():
 
     write_to_file("Associazioni.csv", relationships)
     write_to_file("Eventi.csv", events)
+    write_to_file("EventiTratte.csv", eventsRoutes)
 
 
 if __name__ == "__main__":
