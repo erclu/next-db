@@ -12,9 +12,19 @@ DOB = "2000-01-01"
 def create_files():
     random = get_seeded_random()
 
-    users = [("Id", "Email", "Password", "Nome", "Cognome", "Data_di_nascita")]
+    users = [
+      ("Id", "Email", "Password", "Nome", "Cognome", "Data_di_nascita"),
+      (1, "alice@email.it", PASSWORD, "Alice", "Alice", DOB),
+      (2, "bob@email.it", PASSWORD, "Bob", "Bob", DOB),
+      (3, "charlie@email.it", PASSWORD, "Charlie", "Charlie", DOB),
+    ]
 
-    payment_methods = [("Id", "Utente", "Tipo")]
+    payment_methods = [
+      ("Id", "Utente", "Tipo"),
+      ("NULL", 1, "Carta di credito"),
+      ("NULL", 2, "ApplePay"),
+      ("NULL", 3, "GooglePay"),
+    ]
     payment_methods_types = (
       "Carta di credito", "PayPal", "ApplePay", "GooglePay")
 

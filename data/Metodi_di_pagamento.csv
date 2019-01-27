@@ -1,147 +1,144 @@
 Id,Utente,Tipo
 NULL,1,Carta di credito
-NULL,2,Carta di credito
-NULL,2,Carta di credito
-NULL,3,ApplePay
-NULL,4,ApplePay
+NULL,2,ApplePay
+NULL,3,GooglePay
+NULL,4,Carta di credito
 NULL,5,Carta di credito
-NULL,6,Carta di credito
+NULL,5,Carta di credito
+NULL,6,ApplePay
 NULL,7,ApplePay
 NULL,8,Carta di credito
-NULL,8,ApplePay
-NULL,9,GooglePay
+NULL,9,Carta di credito
 NULL,10,ApplePay
-NULL,11,PayPal
 NULL,11,Carta di credito
-NULL,12,Carta di credito
-NULL,12,PayPal
-NULL,13,GooglePay
+NULL,11,ApplePay
+NULL,12,GooglePay
 NULL,13,ApplePay
-NULL,14,ApplePay
-NULL,15,GooglePay
-NULL,16,Carta di credito
-NULL,16,PayPal
+NULL,14,PayPal
+NULL,14,Carta di credito
+NULL,15,Carta di credito
+NULL,15,PayPal
+NULL,16,GooglePay
+NULL,16,ApplePay
 NULL,17,ApplePay
-NULL,17,ApplePay
-NULL,18,ApplePay
-NULL,19,GooglePay
-NULL,19,GooglePay
-NULL,20,PayPal
+NULL,18,GooglePay
+NULL,19,Carta di credito
+NULL,19,PayPal
+NULL,20,ApplePay
+NULL,20,ApplePay
 NULL,21,ApplePay
-NULL,21,PayPal
-NULL,22,PayPal
-NULL,22,ApplePay
-NULL,23,ApplePay
+NULL,22,GooglePay
+NULL,22,GooglePay
+NULL,23,PayPal
 NULL,24,ApplePay
-NULL,25,Carta di credito
-NULL,26,PayPal
-NULL,26,GooglePay
+NULL,24,PayPal
+NULL,25,PayPal
+NULL,25,ApplePay
+NULL,26,ApplePay
 NULL,27,ApplePay
 NULL,28,Carta di credito
+NULL,29,PayPal
 NULL,29,GooglePay
-NULL,30,PayPal
-NULL,30,Carta di credito
+NULL,30,ApplePay
 NULL,31,Carta di credito
-NULL,31,PayPal
-NULL,32,Carta di credito
-NULL,32,Carta di credito
-NULL,33,ApplePay
+NULL,32,GooglePay
 NULL,33,PayPal
+NULL,33,Carta di credito
+NULL,34,Carta di credito
 NULL,34,PayPal
-NULL,34,GooglePay
-NULL,35,ApplePay
-NULL,36,GooglePay
-NULL,37,Carta di credito
-NULL,38,GooglePay
-NULL,39,ApplePay
-NULL,39,PayPal
-NULL,40,ApplePay
-NULL,40,GooglePay
-NULL,41,ApplePay
+NULL,35,Carta di credito
+NULL,35,Carta di credito
+NULL,36,ApplePay
+NULL,36,PayPal
+NULL,37,PayPal
+NULL,37,GooglePay
+NULL,38,ApplePay
+NULL,39,GooglePay
+NULL,40,Carta di credito
+NULL,41,GooglePay
 NULL,42,ApplePay
+NULL,42,PayPal
+NULL,43,ApplePay
 NULL,43,GooglePay
-NULL,43,PayPal
-NULL,44,PayPal
-NULL,44,PayPal
-NULL,45,GooglePay
-NULL,45,GooglePay
+NULL,44,ApplePay
+NULL,45,ApplePay
 NULL,46,GooglePay
-NULL,47,GooglePay
-NULL,47,ApplePay
-NULL,48,Carta di credito
-NULL,49,ApplePay
+NULL,46,PayPal
+NULL,47,PayPal
+NULL,47,PayPal
+NULL,48,GooglePay
+NULL,48,GooglePay
+NULL,49,GooglePay
+NULL,50,GooglePay
 NULL,50,ApplePay
 NULL,51,Carta di credito
-NULL,51,GooglePay
-NULL,52,Carta di credito
-NULL,52,Carta di credito
-NULL,53,Carta di credito
-NULL,54,GooglePay
+NULL,52,ApplePay
+NULL,53,ApplePay
+NULL,54,Carta di credito
 NULL,54,GooglePay
 NULL,55,Carta di credito
-NULL,56,GooglePay
+NULL,55,Carta di credito
 NULL,56,Carta di credito
 NULL,57,GooglePay
 NULL,57,GooglePay
-NULL,58,ApplePay
+NULL,58,Carta di credito
 NULL,59,GooglePay
-NULL,59,ApplePay
+NULL,59,Carta di credito
 NULL,60,GooglePay
-NULL,60,PayPal
-NULL,61,Carta di credito
-NULL,62,Carta di credito
+NULL,60,GooglePay
+NULL,61,ApplePay
+NULL,62,GooglePay
 NULL,62,ApplePay
-NULL,63,Carta di credito
+NULL,63,GooglePay
+NULL,63,PayPal
 NULL,64,Carta di credito
-NULL,65,GooglePay
-NULL,66,ApplePay
-NULL,67,ApplePay
+NULL,65,Carta di credito
+NULL,65,ApplePay
+NULL,66,Carta di credito
 NULL,67,Carta di credito
-NULL,68,ApplePay
-NULL,69,Carta di credito
-NULL,69,PayPal
+NULL,68,GooglePay
+NULL,69,ApplePay
+NULL,70,ApplePay
 NULL,70,Carta di credito
-NULL,70,Carta di credito
-NULL,71,PayPal
-NULL,71,PayPal
-NULL,72,ApplePay
+NULL,71,ApplePay
+NULL,72,Carta di credito
+NULL,72,PayPal
 NULL,73,Carta di credito
-NULL,74,GooglePay
-NULL,74,Carta di credito
-NULL,75,Carta di credito
+NULL,73,Carta di credito
+NULL,74,PayPal
+NULL,74,PayPal
+NULL,75,ApplePay
 NULL,76,Carta di credito
-NULL,76,Carta di credito
-NULL,77,Carta di credito
 NULL,77,GooglePay
-NULL,78,GooglePay
-NULL,78,GooglePay
+NULL,77,Carta di credito
+NULL,78,Carta di credito
 NULL,79,Carta di credito
+NULL,79,Carta di credito
+NULL,80,Carta di credito
 NULL,80,GooglePay
-NULL,81,Carta di credito
-NULL,82,PayPal
-NULL,82,GooglePay
-NULL,83,Carta di credito
-NULL,84,GooglePay
+NULL,81,GooglePay
+NULL,81,GooglePay
+NULL,82,Carta di credito
+NULL,83,GooglePay
+NULL,84,Carta di credito
+NULL,85,PayPal
 NULL,85,GooglePay
-NULL,85,GooglePay
-NULL,86,PayPal
-NULL,86,GooglePay
-NULL,87,Carta di credito
-NULL,87,PayPal
-NULL,88,ApplePay
-NULL,89,ApplePay
+NULL,86,Carta di credito
+NULL,87,GooglePay
+NULL,88,GooglePay
+NULL,88,GooglePay
+NULL,89,PayPal
+NULL,89,GooglePay
 NULL,90,Carta di credito
+NULL,90,PayPal
 NULL,91,ApplePay
-NULL,91,GooglePay
-NULL,92,Carta di credito
-NULL,93,GooglePay
+NULL,92,ApplePay
+NULL,93,Carta di credito
 NULL,94,ApplePay
-NULL,95,PayPal
-NULL,96,ApplePay
+NULL,94,GooglePay
+NULL,95,Carta di credito
+NULL,96,GooglePay
 NULL,97,ApplePay
-NULL,98,ApplePay
-NULL,98,ApplePay
-NULL,99,GooglePay
-NULL,99,Carta di credito
-NULL,100,Carta di credito
-NULL,100,PayPal
+NULL,98,PayPal
+NULL,99,ApplePay
+NULL,100,ApplePay
