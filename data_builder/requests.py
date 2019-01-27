@@ -89,7 +89,7 @@ def create_files():
       (5, "2019-01-10 00:45:00", "Discesa"),
       (6, "2019-01-10 00:45:00", "Discesa"),
       #In corso
-      ("NULL", "NULL", 3, "NULL", "Salita")
+      ("NULL","NULL", "Salita")
     ] #TODO finish??
 
     eventsRoutes = [
