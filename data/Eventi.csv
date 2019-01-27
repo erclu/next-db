@@ -1,2 +1,7 @@
-Id,Precedente,Successiva,Orario,Tipo
-NULL,1,2,2019-01-10 00:15:00,TODO
+Id,Orario,Tipo
+1,2019-01-10 00:00:00,Salita
+2,2019-01-10 00:00:00,Salita
+3,2019-01-10 00:15:00,Transfer
+4,2019-01-10 00:30:00,Transfer
+5,2019-01-10 00:45:00,Discesa
+6,2019-01-10 00:45:00,Discesa

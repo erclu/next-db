@@ -1,11 +1,11 @@
 Targa,Stato_batteria,Posizione_x,Posizione_y,Tipo,In_ricarica,Tratta,Testa
-1,34,1,47,Trasporto persone,NULL,NULL,NULL
-2,55,15,14,Trasporto persone,NULL,NULL,NULL
-3,37,47,6,Trasporto persone,NULL,NULL,NULL
-4,89,5,37,Trasporto merci,NULL,NULL,NULL
-5,74,2,1,Servizi,NULL,NULL,NULL
-6,31,13,14,Battery pack,NULL,NULL,NULL
-7,97,1,35,Servizi,NULL,NULL,NULL
-8,89,26,14,Trasporto persone,NULL,NULL,NULL
-9,95,17,0,Trasporto merci,NULL,NULL,NULL
-10,74,21,17,Trasporto persone,NULL,NULL,NULL
+NXT00001,34,45,1,Trasporto persone,NULL,NULL,NULL
+NXT00002,55,45,15,Trasporto persone,NULL,NULL,NULL
+NXT00003,37,35,10,Trasporto persone,NULL,NULL,NULL
+NXT00004,34,1,47,Trasporto persone,NULL,NULL,NULL
+NXT00005,55,15,14,Trasporto merci,NULL,NULL,NULL
+NXT00006,37,47,6,Servizi,NULL,NULL,NULL
+NXT00007,89,5,37,Battery pack,NULL,NULL,NULL
+NXT00008,24,1,5,Battery pack,NULL,NULL,NULL
+NXT00009,49,32,38,Trasporto merci,NULL,NULL,NULL
+NXT00010,91,12,45,Trasporto persone,NULL,NULL,NULL
