@@ -1,5 +1,5 @@
 from hashlib import sha256
-from .utils import write_to_file, get_seeded_random
+from .utils import write_to_file, get_seeded_random, NULL
 
 HOW_MANY_USERS = 100
 
@@ -21,9 +21,9 @@ def create_files():
 
     payment_methods = [
       ("Id", "Utente", "Tipo"),
-      ("NULL", 1, "Carta di credito"),
-      ("NULL", 2, "ApplePay"),
-      ("NULL", 3, "GooglePay"),
+      (NULL, 1, "Carta di credito"),
+      (NULL, 2, "ApplePay"),
+      (NULL, 3, "GooglePay"),
     ]
 
     payment_methods_types = (
@@ -38,7 +38,7 @@ def create_files():
 
         for pm_type in random.choices(payment_methods_types,
                                       k=random.randrange(1, 3)):
-            payment_method = ("NULL", i, pm_type)
+            payment_method = (NULL, i, pm_type)
             payment_methods.append(payment_method)
 
     write_to_file("Utenti.csv", users)

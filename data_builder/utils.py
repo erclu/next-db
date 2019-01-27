@@ -3,6 +3,8 @@ from contextlib import contextmanager
 from pathlib import Path
 from random import Random
 
+NULL = "NULL"
+
 DATA_DIR: Path = Path(__file__).parent.parent/"data"
 
 if not DATA_DIR.exists():

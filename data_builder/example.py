@@ -1,10 +1,10 @@
-from .utils import write_to_file
+from .utils import write_to_file, NULL
 
 
 def create_files():
 
     lista_di_righe_da_inserire = (
-      ("NULL", 1, "testo"), # una riga
+      (NULL, 1, "testo"), # una riga
       (1, "un campo, di cui verrà fatto l'escaping", 23)
       # ...
     )

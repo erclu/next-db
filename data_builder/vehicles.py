@@ -1,6 +1,6 @@
 from .road_network import GRID_SIZE
 from .users import NAME, SURNAME, DOB
-from .utils import write_to_file, get_seeded_random
+from .utils import write_to_file, get_seeded_random, NULL
 
 HOW_MANY_VEHICLES = 10
 HOW_MANY_DRIVERS = 3*HOW_MANY_VEHICLES
@@ -34,9 +34,9 @@ def create_files():
         "Tratta",
         "Testa",
       ),
-      ("NXT00001", 34, 45, 1, "Trasporto persone", "NULL", "NULL", "NULL"),
-      ("NXT00002", 55, 45, 15, "Trasporto persone", "NULL", "NULL", "NULL"),
-      ("NXT00003", 37, 35, 10, "Trasporto persone", "NULL", "NULL", "NULL"),
+      ("NXT00001", 34, 45, 1, "Trasporto persone", NULL, NULL, NULL),
+      ("NXT00002", 55, 45, 15, "Trasporto persone", NULL, NULL, NULL),
+      ("NXT00003", 37, 35, 10, "Trasporto persone", NULL, NULL, NULL),
     ]
 
     vehicle_types = [
@@ -55,15 +55,15 @@ def create_files():
           random.choice(range(GRID_SIZE)),
           random.choice(range(GRID_SIZE)),
           vehicle_type,
-          "NULL",
-          "NULL",
-          "NULL",
+          NULL,
+          NULL,
+          NULL,
         )
 
         vehicles.append(vehicle)
 
     for i in range(1, HOW_MANY_DRIVERS + 1):
-        driver = (i, NAME + str(i), SURNAME + str(i), DOB, "NULL", "NULL")
+        driver = (i, NAME + str(i), SURNAME + str(i), DOB, NULL, NULL)
 
         drivers.append(driver)
 

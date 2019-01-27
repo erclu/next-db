@@ -1,4 +1,4 @@
-from .utils import write_to_file
+from .utils import write_to_file, NULL
 
 
 def create_files():
@@ -21,16 +21,16 @@ def create_files():
         "Accettata",
       ),
       # accettate e concluse:
-      ("NULL", req_time, start_time, 45, 20, 45, 1, 1, 1, 1), # R_alice
-      ("NULL", req_time, start_time, 45, 20, 35, 10, 2, 2, 1), # R_bob
-      ("NULL", req_time, start_time, 30, 15, 45, 1, 3, 3, 1), # R_charlie
+      (NULL, req_time, start_time, 45, 20, 45, 1, 1, 1, 1), # R_alice
+      (NULL, req_time, start_time, 45, 20, 35, 10, 2, 2, 1), # R_bob
+      (NULL, req_time, start_time, 30, 15, 45, 1, 3, 3, 1), # R_charlie
       # accettate e in corso, due utenti che hanno fatto la stessa richiesta:
-      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 4, 4, 1),
-      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 5, 4, 1),
+      (NULL, NULL, NULL, 47, 5, 47, 15, 4, 4, 1),
+      (NULL, NULL, NULL, 47, 5, 47, 15, 5, 4, 1),
       # non ancora accettate:
-      ("NULL", "NULL", "NULL", 1, 45, 20, 45, 6, "NULL", "NULL"),
-      ("NULL", "NULL", "NULL", 14, 14, 20, 20, 7, "NULL", "NULL"),
-      ("NULL", "NULL", "NULL", 1, 37, 1, 1, 8, "NULL", "NULL"),
+      (NULL, NULL, NULL, 1, 45, 20, 45, 6, NULL, NULL),
+      (NULL, NULL, NULL, 14, 14, 20, 20, 7, NULL, NULL),
+      (NULL, NULL, NULL, 1, 37, 1, 1, 8, NULL, NULL),
     ]
 
     rides = [
@@ -49,14 +49,14 @@ def create_files():
       (2, start_time, 45, 20, 35, 10, end_time, 3.0), # C_Bob
       (3, start_time, 30, 15, 45, 1, end_time, 3.75), # C_Charlie
       # Corsa in corso
-      (4, "NULL", 47, 5, 47, 15, "NULL", "NULL"),
+      (4, NULL, 47, 5, 47, 15, NULL, NULL),
     ]
 
     completed_rides = [
       ("Id", "Corsa", "Utente"),
-      ("NULL", 1, 1), # Storico Alice
-      ("NULL", 2, 2), # Storico Bob
-      ("NULL", 3, 3), # Storico Charlie
+      (NULL, 1, 1), # Storico Alice
+      (NULL, 2, 2), # Storico Bob
+      (NULL, 3, 3), # Storico Charlie
     ]
 
     relationships = [
@@ -82,16 +82,16 @@ def create_files():
       (4, "2019-01-10 00:30:00", 45, 10, 45, 1),
       (5, "2019-01-10 00:30:00", 45, 10, 35, 10),
       # in corso
-      (6, "NULL", 47, 5, 47, 15),
+      (6, NULL, 47, 5, 47, 15),
     ]
 
     completed_routes = [
       ("Id", "Tratta", "Veicolo", "Autista"),
-      ("NULL", 1, "NXT00001", 1),
-      ("NULL", 2, "NXT00002", 2),
-      ("NULL", 3, "NXT00001", 1),
-      ("NULL", 4, "NXT00001", 1),
-      ("NULL", 5, "NXT00003", 3),
+      (NULL, 1, "NXT00001", 1),
+      (NULL, 2, "NXT00002", 2),
+      (NULL, 3, "NXT00001", 1),
+      (NULL, 4, "NXT00001", 1),
+      (NULL, 5, "NXT00003", 3),
     ]
 
     events = [
@@ -104,7 +104,7 @@ def create_files():
       (5, end_time, "Discesa"), # alice e charlie scendono
       (6, end_time, "Discesa"), # bob scendono
       # In corso
-      (7, "NULL", "Salita")
+      (7, NULL, "Salita")
     ]
 
     events_routes = [
