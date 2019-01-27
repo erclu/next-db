@@ -27,7 +27,7 @@ def create_files():
       # accettate e in corso, due utenti che hanno fatto la stessa richiesta:
       ("NULL", "NULL", "NULL", 47, 5, 47, 15, 4, 4, 1),
       ("NULL", "NULL", "NULL", 47, 5, 47, 15, 5, 4, 1),
-      # non accettate:
+      # non ancora accettate:
       ("NULL", "NULL", "NULL", 1, 45, 20, 45, 6, "NULL", "NULL"),
       ("NULL", "NULL", "NULL", 14, 14, 20, 20, 7, "NULL", "NULL"),
       ("NULL", "NULL", "NULL", 1, 37, 1, 1, 8, "NULL", "NULL"),
