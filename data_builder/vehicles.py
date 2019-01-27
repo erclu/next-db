@@ -4,7 +4,7 @@ from .utils import write_to_file, get_seeded_random
 
 HOW_MANY_VEHICLES = 10
 HOW_MANY_DRIVERS = 3*HOW_MANY_VEHICLES
-HOW_MANY_HUBS = 5 # XXX not implemented
+HOW_MANY_HUBS = 5 # TODO not implemented
 
 
 def create_files():

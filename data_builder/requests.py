@@ -2,6 +2,11 @@ from .utils import write_to_file
 
 
 def create_files():
+
+    req_time = "2018-12-31 23:00:00"
+    start_time = "2019-01-10 00:00:00"
+    end_time = "2019-01-10 00:45:00"
+
     requests = [
       (
         "Id",
@@ -15,21 +20,16 @@ def create_files():
         "Corsa",
         "Utente",
       ),
-      ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 1),
-      ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 2),
-      ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 3),
-      # accettata e in corso:
-      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 2, 5),
-      # accettate e completate:
-      (
-        "NULL", "2019-01-09 20:00:00", "2019-01-10 00:00:00", 45, 20, 45, 1, 1,
-        1, 1), #R_alice
-      (
-        "NULL", "2019-01-09 20:00:00", "2019-01-10 00:00:00", 45, 20, 35, 10,
-        1, 2, 2), #R_bob
-      (
-        "NULL", "2019-01-09 20:00:00", "2019-01-10 00:00:00", 30, 15, 45, 1, 1,
-        3, 3), #R_charlie
+      ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 6),
+      ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 7),
+      ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 8),
+      # completata:
+      ("NULL", req_time, start_time, 45, 20, 45, 1, 1, 1, 1), #R_alice
+      ("NULL", req_time, start_time, 45, 20, 35, 10, 1, 2, 2), #R_bob
+      ("NULL", req_time, start_time, 30, 15, 45, 1, 1, 3, 3), #R_charlie
+      (),
+      # da completare:
+      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 4, 5),
     ]
 
     rides = [
@@ -44,13 +44,10 @@ def create_files():
         "Prezzo",
       ),
       # TODO: calcolo prezzi....
-      (1, "2019-01-10 00:00:00", 45, 20, 45, 1, "2019-01-10 00:45:00",
-       3.50), #C_Alice
-      (2, "2019-01-10 00:00:00", 45, 20, 35, 10, "2019-01-10 00:45:00",
-       3.0), #C_Bob
-      (3, "2019-01-10 00:00:00", 30, 15, 45, 1, "2019-01-10 00:45:00",
-       3.75), #C_Charlie
-      #Corsa in corso
+      (1, start_time, 45, 20, 45, 1, end_time, 3.50), #C_Alice
+      (2, start_time, 45, 20, 35, 10, end_time, 3.0), #C_Bob
+      (3, start_time, 30, 15, 45, 1, end_time, 3.75), #C_Charlie
+      # Corsa in corso
       (4, "NULL", 47, 5, 47, 15, "NULL", "NULL"),
     ]
 
@@ -74,8 +71,8 @@ def create_files():
 
     routes = [
       ("Id", "Orario_partenza", "Inizio_x", "Inizio_y", "Fine_x", "Fine_y"),
-      (1, "2019-01-10 00:00:00", 45, 20, 45, 15),
-      (2, "2019-01-10 00:00:00", 30, 15, 45, 15),
+      (1, start_time, 45, 20, 45, 15),
+      (2, start_time, 30, 15, 45, 15),
       (3, "2019-01-10 00:15:00", 45, 15, 45, 10), #UNIONE
       (4, "2019-01-10 00:30:00", 45, 10, 45, 1),
       (5, "2019-01-10 00:30:00", 45, 10, 35, 10),
@@ -94,14 +91,14 @@ def create_files():
 
     events = [
       ("Id", "Orario", "Tipo"), # tratta Precedente/Successiva all'evento
-      (1, "2019-01-10 00:00:00", "Salita"),
-      (2, "2019-01-10 00:00:00", "Salita"),
+      (1, start_time, "Salita"),
+      (2, start_time, "Salita"),
       (3, "2019-01-10 00:15:00", "Transfer"),
       (4, "2019-01-10 00:30:00", "Transfer"),
-      (5, "2019-01-10 00:45:00", "Discesa"),
-      (6, "2019-01-10 00:45:00", "Discesa"),
+      (5, end_time, "Discesa"),
+      (6, end_time, "Discesa"),
       #In corso
-      #   ("NULL", "NULL", "Salita")
+      ("NULL", "NULL", "Salita")
     ] #TODO finish??
 
     events_routes = [
