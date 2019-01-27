@@ -16,20 +16,20 @@ def create_files():
         "Origine_y",
         "Destinazione_x",
         "Destinazione_y",
-        "Accettata",
-        "Corsa",
         "Utente",
+        "Corsa",
+        "Accettata",
       ),
-      ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 6),
-      ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 7),
-      ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 8),
-      # completata:
-      ("NULL", req_time, start_time, 45, 20, 45, 1, 1, 1, 1), #R_alice
-      ("NULL", req_time, start_time, 45, 20, 35, 10, 1, 2, 2), #R_bob
-      ("NULL", req_time, start_time, 30, 15, 45, 1, 1, 3, 3), #R_charlie
-      (),
-      # da completare:
-      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 4, 5),
+      # accettate e concluse:
+      ("NULL", req_time, start_time, 45, 20, 45, 1, 1, 1, 1), # R_alice
+      ("NULL", req_time, start_time, 45, 20, 35, 10, 2, 2, 1), # R_bob
+      ("NULL", req_time, start_time, 30, 15, 45, 1, 3, 3, 1), # R_charlie
+      # accettata e in corso:
+      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 5, 4, 1),
+      # non accettate:
+      ("NULL", "NULL", "NULL", 1, 45, 20, 45, 6, "NULL", "NULL"),
+      ("NULL", "NULL", "NULL", 14, 14, 20, 20, 7, "NULL", "NULL"),
+      ("NULL", "NULL", "NULL", 1, 37, 1, 1, 8, "NULL", "NULL"),
     ]
 
     rides = [
@@ -44,9 +44,9 @@ def create_files():
         "Prezzo",
       ),
       # TODO: calcolo prezzi....
-      (1, start_time, 45, 20, 45, 1, end_time, 3.50), #C_Alice
-      (2, start_time, 45, 20, 35, 10, end_time, 3.0), #C_Bob
-      (3, start_time, 30, 15, 45, 1, end_time, 3.75), #C_Charlie
+      (1, start_time, 45, 20, 45, 1, end_time, 3.50), # C_Alice
+      (2, start_time, 45, 20, 35, 10, end_time, 3.0), # C_Bob
+      (3, start_time, 30, 15, 45, 1, end_time, 3.75), # C_Charlie
       # Corsa in corso
       (4, "NULL", 47, 5, 47, 15, "NULL", "NULL"),
     ]
@@ -73,10 +73,10 @@ def create_files():
       ("Id", "Orario_partenza", "Inizio_x", "Inizio_y", "Fine_x", "Fine_y"),
       (1, start_time, 45, 20, 45, 15),
       (2, start_time, 30, 15, 45, 15),
-      (3, "2019-01-10 00:15:00", 45, 15, 45, 10), #UNIONE
+      (3, "2019-01-10 00:15:00", 45, 15, 45, 10), # UNIONE
       (4, "2019-01-10 00:30:00", 45, 10, 45, 1),
       (5, "2019-01-10 00:30:00", 45, 10, 35, 10),
-      #in corso
+      # in corso
       (6, "NULL", 47, 5, 47, 15),
     ]
 
@@ -97,9 +97,9 @@ def create_files():
       (4, "2019-01-10 00:30:00", "Transfer"),
       (5, end_time, "Discesa"),
       (6, end_time, "Discesa"),
-      #In corso
+      # In corso
       ("NULL", "NULL", "Salita")
-    ] #TODO finish??
+    ] # TODO finish??
 
     events_routes = [
       ("Evento", "Tratta"),

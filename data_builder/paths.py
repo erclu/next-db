@@ -16,7 +16,7 @@ def create_files():
     for node_id, i in zip(range(2356, 2366, +1), range(10)):
         paths.append((node_id, 3, i))
 
-    write_to_file("Cammini.csv", paths) #TODO
+    write_to_file("Cammini.csv", paths) # TODO
 
 
 if __name__ == "__main__":

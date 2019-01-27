@@ -49,8 +49,6 @@ def create_files():
         vehicle_type = vehicle_types_copy.pop(
           0) if vehicle_types_copy else random.choice(vehicle_types)
 
-        print(vehicle_types_copy, vehicle_types)
-
         vehicle = (
           "NXT{:05d}".format(i),
           random.choice(range(20, 101)),

@@ -49,9 +49,9 @@ CREATE TABLE Richieste(
   Origine_y DECIMAL(3, 1) NOT NULL,
   Destinazione_x DECIMAL(3, 1) NOT NULL,
   Destinazione_y DECIMAL(3, 1) NOT NULL,
-  Accettata BOOLEAN,
-  Corsa INTEGER,
   Utente INTEGER NOT NULL,
+  Corsa INTEGER,
+  Accettata BOOLEAN,
 
   CHECK(TRUNCATE(Origine_x, 0)=Origine_x OR TRUNCATE(Origine_y, 0)=Origine_y),
   CHECK(TRUNCATE(Destinazione_x, 0)=Destinazione_x OR TRUNCATE(Destinazione_y, 0)=Destinazione_y),
@@ -93,8 +93,8 @@ CREATE TABLE Associazioni(
 
 CREATE TABLE Eventi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Orario TIMESTAMP,
-  Tipo VARCHAR(255)
+  Orario TIMESTAMP NOT NULL,
+  Tipo VARCHAR(255) NOT NULL
 ) Engine=InnoDB;
 
 CREATE TABLE EventiTratte(
