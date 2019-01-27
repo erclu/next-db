@@ -82,7 +82,7 @@ LOAD DATA LOCAL INFILE 'data/Nodi.csv' INTO TABLE Nodi
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
 
--- Indicazioni
+-- Cammini
 
 LOAD DATA LOCAL INFILE 'data/Veicoli.csv' INTO TABLE Veicoli
   FIELDS TERMINATED BY ','
