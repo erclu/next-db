@@ -4,7 +4,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS Archi, Associazioni, Autisti, Corse, Eventi, Indicazioni, Metodi_di_pagamento, Nodi, Richieste, Stazioni_di_ricarica, Storico_corse, Storico_tratte, Tratte, Utenti, Veicoli;
+DROP TABLE IF EXISTS Archi, Associazioni, Autisti, Corse, Eventi, Cammini, Metodi_di_pagamento, Nodi, Richieste, Stazioni_di_ricarica, Storico_corse, Storico_tratte, Tratte, Utenti, Veicoli;
 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -173,15 +173,12 @@ CREATE TABLE Archi(
   FOREIGN KEY(Uscente) REFERENCES Nodi(Id)
 ) Engine=InnoDB;
 
-CREATE TABLE Indicazioni(
-  Partenza INTEGER NOT NULL,
-  Destinazione INTEGER NOT NULL,
+CREATE TABLE Cammini(
+  Nodo INTEGER NOT NULL,
   Tratta INTEGER NOT NULL,
+  Indice_sequenza INTEGER NOT NULL,
 
-  CHECK(Partenza<>Destinazione),
-
-  PRIMARY KEY(Partenza, Destinazione, Tratta),
-  FOREIGN KEY(Partenza) REFERENCES Nodi(Id),
-  FOREIGN KEY(Destinazione) REFERENCES Nodi(Id),
+  PRIMARY KEY(Nodo, Tratta),
+  FOREIGN KEY(Nodo) REFERENCES Nodi(Id),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
