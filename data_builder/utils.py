@@ -6,7 +6,7 @@ from random import Random
 DATA_DIR: Path = Path(__file__).parent.parent/"data"
 
 if not DATA_DIR.exists():
-    print("creating data folder")
+    print("-- creating data folder")
     DATA_DIR.mkdir()
 
 

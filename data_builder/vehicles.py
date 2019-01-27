@@ -8,7 +8,6 @@ HOW_MANY_HUBS = 5 # XXX not implemented
 
 
 def create_files():
-    # TODO targhe: NXT001ecc??
     random = get_seeded_random()
 
     drivers = [(
@@ -24,21 +23,36 @@ def create_files():
       (5, 15, 34, 10),
     )
 
-    vehicles = [(
-      "Targa", "Stato_batteria", "Posizione_x", "Posizione_y", "Tipo",
-      "In_ricarica", "Tratta", "Testa")]
-
-    vehicle_types = [
-      "Trasporto persone", "Trasporto persone", "Trasporto persone",
-      "Trasporto merci", "Servizi", "Battery pack"
+    vehicles = [
+      (
+        "Targa",
+        "Stato_batteria",
+        "Posizione_x",
+        "Posizione_y",
+        "Tipo",
+        "In_ricarica",
+        "Tratta",
+        "Testa",
+      ),
+      ("NXT00001", 34, 45, 1, "Trasporto persone", "NULL", "NULL", "NULL"),
+      ("NXT00002", 55, 45, 15, "Trasporto persone", "NULL", "NULL", "NULL"),
+      ("NXT00003", 37, 35, 10, "Trasporto persone", "NULL", "NULL", "NULL"),
     ]
 
-    for i in range(1, HOW_MANY_VEHICLES + 1):
-        vehicle_type = vehicle_types[i - 1] if i - 1 < len(
-          vehicle_types) else random.choice(vehicle_types)
+    vehicle_types = [
+      "Trasporto persone", "Trasporto merci", "Servizi", "Battery pack"
+    ]
+    vehicle_types_copy = list(vehicle_types)
+
+    for i in range(len(vehicles), min(HOW_MANY_VEHICLES + 1, 99999)):
+
+        vehicle_type = vehicle_types_copy.pop(
+          0) if vehicle_types_copy else random.choice(vehicle_types)
+
+        print(vehicle_types_copy, vehicle_types)
 
         vehicle = (
-          i,
+          "NXT{:05d}".format(i),
           random.choice(range(20, 101)),
           random.choice(range(GRID_SIZE)),
           random.choice(range(GRID_SIZE)),

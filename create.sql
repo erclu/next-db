@@ -94,16 +94,16 @@ CREATE TABLE Associazioni(
 CREATE TABLE Eventi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Orario TIMESTAMP,
-  Tipo VARCHAR(255),
+  Tipo VARCHAR(255)
 ) Engine=InnoDB;
 
 CREATE TABLE EventiTratte(
   Evento INTEGER NOT NULL,
   Tratta INTEGER NOT NULL,
 
-  PRIMARY KEY (Evento, Tratta),
-  FOREIGN KEY (Evento) REFERENCES Eventi(Id),
-  FOREIGN Key (Tratte) REFERENCES Tratte(Id)
+  PRIMARY KEY(Evento, Tratta),
+  FOREIGN KEY(Evento) REFERENCES Eventi(Id),
+  FOREIGN Key(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
 CREATE TABLE Stazioni_di_ricarica(
@@ -116,7 +116,7 @@ CREATE TABLE Stazioni_di_ricarica(
 ) Engine=InnoDB;
 
 CREATE TABLE Veicoli(
-  Targa INTEGER PRIMARY KEY AUTO_INCREMENT,
+  Targa CHAR(8) PRIMARY KEY,
   Stato_batteria INTEGER NOT NULL,
   Posizione_x DECIMAL(3, 1) NOT NULL,
   Posizione_y DECIMAL(3, 1) NOT NULL,
@@ -139,7 +139,7 @@ CREATE TABLE Autisti(
   Nome VARCHAR(255) NOT NULL,
   Cognome VARCHAR(255) NOT NULL,
   Data_di_nascita DATE NOT NULL,
-  Veicolo INTEGER,
+  Veicolo CHAR(8),
   Alla_guida BOOLEAN,
 
   CHECK((Veicolo IS NULL AND Alla_guida IS NULL) OR (Veicolo IS NOT NULL AND Alla_guida IS NOT NULL)),
@@ -150,7 +150,7 @@ CREATE TABLE Autisti(
 CREATE TABLE Storico_tratte(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Tratta INTEGER NOT NULL,
-  Veicolo INTEGER NOT NULL,
+  Veicolo CHAR(8) NOT NULL,
   Autista INTEGER NOT NULL,
 
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id),

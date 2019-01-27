@@ -25,10 +25,11 @@ def create_files():
       ("NULL", 2, "ApplePay"),
       ("NULL", 3, "GooglePay"),
     ]
+
     payment_methods_types = (
       "Carta di credito", "PayPal", "ApplePay", "GooglePay")
 
-    for i in range(1, HOW_MANY_USERS + 1):
+    for i in range(4, HOW_MANY_USERS + 1):
         email = "{}.{}.{}@email.it".format(NAME, SURNAME, i)
 
         user = (i, email, PASSWORD, NAME + str(i), SURNAME + str(i), DOB)

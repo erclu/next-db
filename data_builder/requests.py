@@ -18,13 +18,18 @@ def create_files():
       ("NULL", "NULL", "NULL", 1, 45, 20, 45, "NULL", "NULL", 1),
       ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 2),
       ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 3),
-      # completata:
-      ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 45, 20, 45, 1, 1, 1, 1), #R_alice, id:3
-      ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 45, 20, 35, 10, 1, 2, 2), #R_bob, id:4
-      ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 30, 15, 45, 1, 1, 3, 3), #R_charlie, id:5
-      (),
-      # da completare:
+      # accettata e in corso:
       ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 2, 5),
+      # accettate e completate:
+      (
+        "NULL", "2019-01-09 20:00:00", "2019-01-10 00:00:00", 45, 20, 45, 1, 1,
+        1, 1), #R_alice
+      (
+        "NULL", "2019-01-09 20:00:00", "2019-01-10 00:00:00", 45, 20, 35, 10,
+        1, 2, 2), #R_bob
+      (
+        "NULL", "2019-01-09 20:00:00", "2019-01-10 00:00:00", 30, 15, 45, 1, 1,
+        3, 3), #R_charlie
     ]
 
     rides = [
@@ -38,14 +43,21 @@ def create_files():
         "Ora_conclusione",
         "Prezzo",
       ),
-      (1,"2019-01-10 00:00:00", 45, 20, 45, 1, "2019-01-10 00:45:00", 3.50), #C_Alice
-      (2,"2019-01-10 00:00:00", 45, 20, 35, 10, "2019-01-10 00:45:00", 3.0), #C_Bob
-      (3,"2019-01-10 00:00:00", 30, 15, 45, 1, "2019-01-10 00:45:00", 3.75), #C_Charlie
+      # TODO: calcolo prezzi....
+      (1, "2019-01-10 00:00:00", 45, 20, 45, 1, "2019-01-10 00:45:00",
+       3.50), #C_Alice
+      (2, "2019-01-10 00:00:00", 45, 20, 35, 10, "2019-01-10 00:45:00",
+       3.0), #C_Bob
+      (3, "2019-01-10 00:00:00", 30, 15, 45, 1, "2019-01-10 00:45:00",
+       3.75), #C_Charlie
       #Corsa in corso
       (4, "NULL", 47, 5, 47, 15, "NULL", "NULL"),
     ]
 
-    completed_rides = [("Id", "Corsa", "Utente"), ("NULL", 1, 4)]
+    completed_rides = [
+      ("Id", "Corsa", "Utente"),
+      ("NULL", 1, 4),
+    ]
 
     relationships = [
       ("Corsa", "Tratta", "Posto_occupato"),
@@ -57,7 +69,7 @@ def create_files():
       (2, 5, 0),
       (3, 2, 0),
       (3, 3, 2),
-      (3, 4, 1)
+      (3, 4, 1),
     ]
 
     routes = [
@@ -73,11 +85,11 @@ def create_files():
 
     completed_routes = [
       ("Id", "Tratta", "Veicolo", "Autista"),
-      ("NULL", 1, 1, 1),
-      ("NULL", 2, 2, 2),
-      ("NULL", 3, 1, 1),
-      ("NULL", 4, 1, 1),
-      ("NULL", 5, 3, 3),
+      ("NULL", 1, "NXT00001", 1),
+      ("NULL", 2, "NXT00002", 2),
+      ("NULL", 3, "NXT00001", 1),
+      ("NULL", 4, "NXT00001", 1),
+      ("NULL", 5, "NXT00003", 3),
     ]
 
     events = [
@@ -86,24 +98,24 @@ def create_files():
       (2, "2019-01-10 00:00:00", "Salita"),
       (3, "2019-01-10 00:15:00", "Transfer"),
       (4, "2019-01-10 00:30:00", "Transfer"),
-      (5, "2019-01-10 00:45:00", "Discesa")
-      (6, "2019-01-10 00:45:00", "Discesa")
+      (5, "2019-01-10 00:45:00", "Discesa"),
+      (6, "2019-01-10 00:45:00", "Discesa"),
       #In corso
-      ("NULL", "NULL", 3, "NULL", "Salita")
+      #   ("NULL", "NULL", "Salita")
     ] #TODO finish??
 
-    eventsRoutes = [
-        ("Evento", "Tratta"),
-        (1, 1), #salita A,B
-        (2, 2), #salita C
-        (3, 1), #transfer IN
-        (3, 2), #transfer IN
-        (3, 3), #transfer OUT
-        (4, 3), #transfer IN
-        (4, 4), #transfer OUT
-        (4, 5), #transfer OUT
-        (5, 4), #discesa A,C
-        (6, 5) #discesa B
+    events_routes = [
+      ("Evento", "Tratta"),
+      (1, 1), # salita A,B
+      (2, 2), # salita C
+      (3, 1), # transfer IN
+      (3, 2), # transfer IN
+      (3, 3), # transfer OUT
+      (4, 3), # transfer IN
+      (4, 4), # transfer OUT
+      (4, 5), # transfer OUT
+      (5, 4), # discesa A,C
+      (6, 5), # discesa B
     ]
 
     write_to_file("Richieste.csv", requests)
@@ -116,6 +128,7 @@ def create_files():
 
     write_to_file("Associazioni.csv", relationships)
     write_to_file("Eventi.csv", events)
+    write_to_file("EventiTratte.csv", events_routes)
 
 
 if __name__ == "__main__":
