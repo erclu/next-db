@@ -11,6 +11,7 @@ DOB = "2000-01-01"
 
 def create_files():
     random = get_seeded_random()
+
     users = [("Id", "Email", "Password", "Nome", "Cognome", "Data_di_nascita")]
 
     payment_methods = [("Id", "Utente", "Tipo")]

@@ -35,16 +35,16 @@ CREATE TABLE Corse(
   Origine_y INTEGER NOT NULL,
   Destinazione_x INTEGER NOT NULL,
   Destinazione_y INTEGER NOT NULL,
-  Ora_conclusione TIMESTAMP,
-  Prezzo DECIMAL(10, 2) NOT NULL,
+  Ora_conclusione TIMESTAMP NULL DEFAULT NULL,
+  Prezzo DECIMAL(10, 2),
 
   CHECK(Prezzo>0)
 ) Engine=InnoDB;
 
 CREATE TABLE Richieste(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Orario_richiesta TIMESTAMP NOT NULL,
-  Orario_partenza TIMESTAMP NOT NULL,
+  Orario_richiesta TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  Orario_partenza TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   Origine_x DECIMAL(3, 1) NOT NULL,
   Origine_y DECIMAL(3, 1) NOT NULL,
   Destinazione_x DECIMAL(3, 1) NOT NULL,
