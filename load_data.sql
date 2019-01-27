@@ -6,6 +6,7 @@ TRUNCATE TABLE `Associazioni`;
 TRUNCATE TABLE `Autisti`;
 TRUNCATE TABLE `Corse`;
 TRUNCATE TABLE `Eventi`;
+TRUNCATE TABLE `EventiTratte`
 TRUNCATE TABLE `Cammini`;
 TRUNCATE TABLE `Metodi_di_pagamento`;
 TRUNCATE TABLE `Nodi`;
@@ -74,6 +75,8 @@ LOAD DATA LOCAL INFILE 'data/Eventi.csv' INTO TABLE Eventi
   ESCAPED BY '"'
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
+
+-- EventiTratte
 
 LOAD DATA LOCAL INFILE 'data/Nodi.csv' INTO TABLE Nodi
   FIELDS TERMINATED BY ','

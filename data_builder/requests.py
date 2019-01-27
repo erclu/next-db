@@ -19,7 +19,10 @@ def create_files():
       ("NULL", "NULL", "NULL", 14, 14, 20, 20, "NULL", "NULL", 2),
       ("NULL", "NULL", "NULL", 1, 37, 1, 1, "NULL", "NULL", 3),
       # completata:
-      ("NULL", "NULL", "NULL", 1, 45, 20, 45, 1, 1, 4),
+      ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 45, 20, 45, 1, 1, 1, 1), #R_alice, id:3
+      ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 45, 20, 35, 10, 1, 2, 2), #R_bob, id:4
+      ("NULL", "2018-12-31 23:00:00", "2019-01-10 00:00:00", 30, 15, 45, 1, 1, 3, 3), #R_charlie, id:5
+      (),
       # da completare:
       ("NULL", "NULL", "NULL", 47, 5, 47, 15, 1, 2, 5),
     ]
@@ -35,8 +38,11 @@ def create_files():
         "Ora_conclusione",
         "Prezzo",
       ),
-      (1, "2019-01-10 00:00:00", 30, 20, 30, 1, "2019-01-10 00:30:00", 3.50),
-      (2, "NULL", 47, 5, 47, 15, "NULL", "NULL"),
+      (1,"2019-01-10 00:00:00", 45, 20, 45, 1, "2019-01-10 00:45:00", 3.50), #C_Alice
+      (2,"2019-01-10 00:00:00", 45, 20, 35, 10, "2019-01-10 00:45:00", 3.0), #C_Bob
+      (3,"2019-01-10 00:00:00", 30, 15, 45, 1, "2019-01-10 00:45:00", 3.75), #C_Charlie
+      #Corsa in corso
+      (4, "NULL", 47, 5, 47, 15, "NULL", "NULL"),
     ]
 
     completed_rides = [("Id", "Corsa", "Utente"), ("NULL", 1, 4)]
@@ -44,27 +50,61 @@ def create_files():
     relationships = [
       ("Corsa", "Tratta", "Posto_occupato"),
       (1, 1, 0),
-      (1, 2, 1),
-      (2, 3, 0),
+      (1, 3, 0),
+      (1, 4, 0),
+      (2, 1, 1),
+      (2, 3, 1),
+      (2, 5, 0),
+      (3, 2, 0),
+      (3, 3, 2),
+      (3, 4, 1)
     ]
 
     routes = [
       ("Id", "Orario_partenza", "Inizio_x", "Inizio_y", "Fine_x", "Fine_y"),
-      (1, "2019-01-10 00:00:00", 30, 20, 30, 10),
-      (2, "2019-01-10 00:15:00", 30, 10, 30, 1), # è salito qualcuno?????? XXX
-      (3, "NULL", 47, 5, 47, 15),
+      (1, "2019-01-10 00:00:00", 45, 20, 45, 15),
+      (2, "2019-01-10 00:00:00", 30, 15, 45, 15),
+      (3, "2019-01-10 00:15:00", 45, 15, 45, 10), #UNIONE
+      (4, "2019-01-10 00:30:00", 45, 10, 45, 1),
+      (5, "2019-01-10 00:30:00", 45, 10, 35, 10),
+      #in corso
+      (6, "NULL", 47, 5, 47, 15),
     ]
 
     completed_routes = [
       ("Id", "Tratta", "Veicolo", "Autista"),
-      ("NULL", 1, 8, 1),
-      ("NULL", 2, 8, 1),
+      ("NULL", 1, 1, 1),
+      ("NULL", 2, 2, 2),
+      ("NULL", 3, 1, 1),
+      ("NULL", 4, 1, 1),
+      ("NULL", 5, 3, 3),
     ]
 
     events = [
-      ("Id", "Precedente", "Successiva", "Orario", "Tipo"),
-      ("NULL", 1, 2, "2019-01-10 00:15:00", "TODO"),
+      ("Id", "Orario", "Tipo"), # tratta Precedente/Successiva all'evento
+      (1, "2019-01-10 00:00:00", "Salita"),
+      (2, "2019-01-10 00:00:00", "Salita"),
+      (3, "2019-01-10 00:15:00", "Transfer"),
+      (4, "2019-01-10 00:30:00", "Transfer"),
+      (5, "2019-01-10 00:45:00", "Discesa")
+      (6, "2019-01-10 00:45:00", "Discesa")
+      #In corso
+      ("NULL", "NULL", 3, "NULL", "Salita")
     ] #TODO finish??
+
+    eventsRoutes = [
+        ("Evento", "Tratta"),
+        (1, 1), #salita A,B
+        (2, 2), #salita C
+        (3, 1), #transfer IN
+        (3, 2), #transfer IN
+        (3, 3), #transfer OUT
+        (4, 3), #transfer IN
+        (4, 4), #transfer OUT
+        (4, 5), #transfer OUT
+        (5, 4), #discesa A,C
+        (6, 5) #discesa B
+    ]
 
     write_to_file("Richieste.csv", requests)
 

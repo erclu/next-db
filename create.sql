@@ -4,7 +4,7 @@
 
 SET FOREIGN_KEY_CHECKS=0;
 
-DROP TABLE IF EXISTS Archi, Associazioni, Autisti, Corse, Eventi, Cammini, Metodi_di_pagamento, Nodi, Richieste, Stazioni_di_ricarica, Storico_corse, Storico_tratte, Tratte, Utenti, Veicoli;
+DROP TABLE IF EXISTS Archi, Associazioni, Autisti, Corse, Eventi, EventiTratte, Cammini, Metodi_di_pagamento, Nodi, Richieste, Stazioni_di_ricarica, Storico_corse, Storico_tratte, Tratte, Utenti, Veicoli;
 
 SET FOREIGN_KEY_CHECKS=1;
 
@@ -93,13 +93,17 @@ CREATE TABLE Associazioni(
 
 CREATE TABLE Eventi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
-  Precedente INTEGER,
-  Successiva INTEGER,
   Orario TIMESTAMP,
   Tipo VARCHAR(255),
+) Engine=InnoDB;
 
-  FOREIGN KEY(Precedente) REFERENCES Tratte(Id),
-  FOREIGN KEY(Successiva) REFERENCES Tratte(Id)
+CREATE TABLE EventiTratte(
+  Evento INTEGER NOT NULL,
+  Tratta INTEGER NOT NULL,
+
+  PRIMARY KEY (Evento, Tratta),
+  FOREIGN KEY (Evento) REFERENCES Eventi(Id),
+  FOREIGN Key (Tratte) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
 CREATE TABLE Stazioni_di_ricarica(
