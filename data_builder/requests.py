@@ -24,7 +24,8 @@ def create_files():
       ("NULL", req_time, start_time, 45, 20, 45, 1, 1, 1, 1), # R_alice
       ("NULL", req_time, start_time, 45, 20, 35, 10, 2, 2, 1), # R_bob
       ("NULL", req_time, start_time, 30, 15, 45, 1, 3, 3, 1), # R_charlie
-      # accettata e in corso:
+      # accettate e in corso, due utenti che hanno fatto la stessa richiesta:
+      ("NULL", "NULL", "NULL", 47, 5, 47, 15, 4, 4, 1),
       ("NULL", "NULL", "NULL", 47, 5, 47, 15, 5, 4, 1),
       # non accettate:
       ("NULL", "NULL", "NULL", 1, 45, 20, 45, 6, "NULL", "NULL"),
@@ -43,7 +44,7 @@ def create_files():
         "Ora_conclusione",
         "Prezzo",
       ),
-      # TODO: calcolo prezzi....
+      # TODO calcolo prezzi su corse completate..
       (1, start_time, 45, 20, 45, 1, end_time, 3.50), # C_Alice
       (2, start_time, 45, 20, 35, 10, end_time, 3.0), # C_Bob
       (3, start_time, 30, 15, 45, 1, end_time, 3.75), # C_Charlie
@@ -53,7 +54,9 @@ def create_files():
 
     completed_rides = [
       ("Id", "Corsa", "Utente"),
-      ("NULL", 1, 4),
+      ("NULL", 1, 1), # Storico Alice
+      ("NULL", 2, 2), # Storico Bob
+      ("NULL", 3, 3), # Storico Charlie
     ]
 
     relationships = [
@@ -67,6 +70,8 @@ def create_files():
       (3, 2, 0),
       (3, 3, 2),
       (3, 4, 1),
+      (4, 6, 0),
+      (4, 6, 1),
     ]
 
     routes = [
@@ -90,16 +95,17 @@ def create_files():
     ]
 
     events = [
-      ("Id", "Orario", "Tipo"), # tratta Precedente/Successiva all'evento
-      (1, start_time, "Salita"),
-      (2, start_time, "Salita"),
-      (3, "2019-01-10 00:15:00", "Transfer"),
-      (4, "2019-01-10 00:30:00", "Transfer"),
-      (5, end_time, "Discesa"),
-      (6, end_time, "Discesa"),
+      ("Id", "Orario", "Tipo"),
+      (1, start_time, "Salita"), # alice e bob salgono
+      (2, start_time, "Salita"), # charlie sale
+      (3, "2019-01-10 00:15:00",
+       "Transfer"), # charlie va sul veicolo di alice e bob
+      (4, "2019-01-10 00:30:00", "Transfer"), # bob cambia veicolo
+      (5, end_time, "Discesa"), # alice e charlie scendono
+      (6, end_time, "Discesa"), # bob scendono
       # In corso
-      ("NULL", "NULL", "Salita")
-    ] # TODO finish??
+      (7, "NULL", "Salita")
+    ]
 
     events_routes = [
       ("Evento", "Tratta"),
@@ -113,6 +119,7 @@ def create_files():
       (4, 5), # transfer OUT
       (5, 4), # discesa A,C
       (6, 5), # discesa B
+      (7, 6), # In corso
     ]
 
     write_to_file("Richieste.csv", requests)

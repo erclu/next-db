@@ -95,6 +95,8 @@ CREATE TABLE Eventi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Orario TIMESTAMP NOT NULL,
   Tipo VARCHAR(255) NOT NULL
+
+  --TODO check sul tipo?
 ) Engine=InnoDB;
 
 CREATE TABLE EventiTratte(
