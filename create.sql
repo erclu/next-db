@@ -103,7 +103,7 @@ CREATE TABLE EventiTratte(
 
   PRIMARY KEY (Evento, Tratta),
   FOREIGN KEY (Evento) REFERENCES Eventi(Id),
-  FOREIGN Key (Tratte) REFERENCES Tratte(Id)
+  FOREIGN Key (Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
 CREATE TABLE Stazioni_di_ricarica(
