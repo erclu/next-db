@@ -6,7 +6,7 @@ TRUNCATE TABLE `Associazioni`;
 TRUNCATE TABLE `Autisti`;
 TRUNCATE TABLE `Corse`;
 TRUNCATE TABLE `Eventi`;
-TRUNCATE TABLE `Indicazioni`;
+TRUNCATE TABLE `Cammnini`;
 TRUNCATE TABLE `Metodi_di_pagamento`;
 TRUNCATE TABLE `Nodi`;
 TRUNCATE TABLE `Richieste`;
@@ -46,7 +46,7 @@ LOAD DATA LOCAL INFILE 'data/Richieste.csv' INTO TABLE Richieste
   ESCAPED BY '"'
   LINES TERMINATED BY '\n'
   IGNORE 1 LINES;
-  
+
 LOAD DATA LOCAL INFILE 'data/Storico_corse.csv' INTO TABLE Storico_corse
   FIELDS TERMINATED BY ','
   OPTIONALLY ENCLOSED BY '"'
