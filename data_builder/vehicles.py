@@ -10,9 +10,15 @@ HOW_MANY_HUBS = 5 # XXX not implemented
 def create_files():
     random = get_seeded_random()
 
-    drivers = [(
-      "Codice_dipendente", "Nome", "Cognome", "Data_di_nascita", "Veicolo",
-      "Alla_guida")]
+    drivers = [
+      (
+        "Codice_dipendente", "Nome", "Cognome", "Data_di_nascita", "Veicolo",
+        "Alla_guida"),
+      (1, "Alan", "Turing", DOB, NULL, NULL),
+      (2, "Charles", "Babbage", DOB, NULL, NULL),
+      (3, "John", "Nash", DOB, NULL, NULL),
+      (4, "Ada", "Lovelace", DOB, "NXT00001", 1),
+    ]
 
     hubs = (
       ("Id", "Posizione_x", "Posizione_y", "Posti_totali"),
@@ -34,7 +40,7 @@ def create_files():
         "Tratta",
         "Testa",
       ),
-      ("NXT00001", 34, 47, 6, "Trasporto persone", NULL, 1, NULL),
+      ("NXT00001", 34, 47, 6, "Trasporto persone", NULL, 6, NULL),
       ("NXT00002", 55, 45, 15, "Trasporto persone", NULL, NULL, NULL),
       ("NXT00003", 37, 35, 10, "Trasporto persone", NULL, NULL, NULL),
     ]
@@ -62,7 +68,7 @@ def create_files():
 
         vehicles.append(vehicle)
 
-    for i in range(1, HOW_MANY_DRIVERS + 1):
+    for i in range(5, HOW_MANY_DRIVERS + 1):
         driver = (i, NAME + str(i), SURNAME + str(i), DOB, NULL, NULL)
 
         drivers.append(driver)

@@ -66,7 +66,7 @@ GROUP BY
 DROP VIEW IF EXISTS Sequenza_eventi_per_utente;
 CREATE VIEW Sequenza_eventi_per_utente AS
 SELECT
-    u.Id,
+    u.Id AS id_utente,
     u.Nome,
     u.Cognome,
     e.Orario AS orario_evento,
@@ -86,20 +86,20 @@ WHERE
     c.Richiesta = r.Id AND
     r.Utente = u.Id
 GROUP BY
-	e.Tipo, a.Posto_occupato, u.Id
+    e.Tipo, t.Id, a.Posto_occupato, u.Id
 ORDER BY
     u.Id, e.Orario
 ;
 
 -- #6
-DROP VIEW IF EXISTS Veicoli_per_Richiesta;
-CREATE VIEW Veicoli_per_Richiesta AS
+DROP VIEW IF EXISTS Vicinanza_veicoli_a_richieste;
+CREATE VIEW Vicinanza_veicoli_a_richieste AS
 SELECT
     r.Id AS Id_richiesta,
-    r.Origine_x AS R_x,
-    r.Origine_y AS R_y,
     v.Targa,
     ABS(r.Origine_x - v.Posizione_x) + ABS(r.Origine_y - v.Posizione_y) AS Distanza,
+    r.Origine_x AS R_x,
+    r.Origine_y AS R_y,
     v.Posizione_x AS V_x,
     v.Posizione_y AS V_y
 FROM
@@ -114,3 +114,6 @@ ORDER BY
     r.Id,
     Distanza
 ;
+
+-- drop delle vecchie view
+DROP VIEW IF EXISTS Veicoli_per_Richiesta;

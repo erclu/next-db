@@ -1,8 +1,8 @@
 Codice_dipendente,Nome,Cognome,Data_di_nascita,Veicolo,Alla_guida
-1,nome1,cognome1,2000-01-01,NULL,NULL
-2,nome2,cognome2,2000-01-01,NULL,NULL
-3,nome3,cognome3,2000-01-01,NULL,NULL
-4,nome4,cognome4,2000-01-01,NULL,NULL
+1,Alan,Turing,2000-01-01,NULL,NULL
+2,Charles,Babbage,2000-01-01,NULL,NULL
+3,John,Nash,2000-01-01,NULL,NULL
+4,Ada,Lovelace,2000-01-01,NXT00001,1
 5,nome5,cognome5,2000-01-01,NULL,NULL
 6,nome6,cognome6,2000-01-01,NULL,NULL
 7,nome7,cognome7,2000-01-01,NULL,NULL
