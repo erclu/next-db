@@ -3,3 +3,4 @@ Richiesta,Orario_partenza,Orario_conclusione,Prezzo
 2,2019-01-10 00:00:00,2019-01-10 00:45:00,3.0
 3,2019-01-10 00:00:00,2019-01-10 00:45:00,3.75
 4,NULL,NULL,NULL
+5,NULL,NULL,NULL

@@ -42,8 +42,9 @@ def create_files():
       (1, start_time, end_time, 3.50), # C_Alice
       (2, start_time, end_time, 3.0), # C_Bob
       (3, start_time, end_time, 3.75), # C_Charlie
-      # Corsa in corso
+      # Corse in corso
       (4, NULL, NULL, NULL),
+      (5, NULL, NULL, NULL),
     ]
 
     completed_rides = [
@@ -65,7 +66,7 @@ def create_files():
       (3, 3, 2),
       (3, 4, 1),
       (4, 6, 0),
-      (4, 6, 1), #FIXME due utenti una corsa occupano due posti? vedi query...
+      (5, 6, 1),
     ]
 
     routes = [
