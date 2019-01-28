@@ -69,7 +69,7 @@ FROM
     Storico_corse sc,
     Associazioni a,
     Tratte t,
-    lunghezza_cammino_per_tratta lcpt,
+    Lunghezza_cammino_per_tratta lcpt,
     Storico_tratte st
 WHERE
     u.Id = sc.Utente AND sc.Corsa = a.Corsa AND a.Tratta = t.Id AND t.Id = lcpt.tratta_id AND st.Tratta = lcpt.tratta_id
