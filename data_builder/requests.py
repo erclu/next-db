@@ -40,7 +40,7 @@ def create_files():
         "Origine_y",
         "Destinazione_x",
         "Destinazione_y",
-        "Ora_conclusione",
+        "Orario_conclusione",
         "Prezzo",
       ),
       # TODO calcolo prezzi su corse completate..

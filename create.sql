@@ -28,19 +28,6 @@ CREATE TABLE Metodi_di_pagamento(
   FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 ) Engine=InnoDB;
 
-CREATE TABLE Corse(
-  Id INTEGER AUTO_INCREMENT PRIMARY KEY,
-  Orario_partenza TIMESTAMP NOT NULL,
-  Origine_x INTEGER NOT NULL,
-  Origine_y INTEGER NOT NULL,
-  Destinazione_x INTEGER NOT NULL,
-  Destinazione_y INTEGER NOT NULL,
-  Ora_conclusione TIMESTAMP NULL DEFAULT NULL,
-  Prezzo DECIMAL(10, 2),
-
-  CHECK(Prezzo>0)
-) Engine=InnoDB;
-
 CREATE TABLE Richieste(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Orario_richiesta TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -50,22 +37,29 @@ CREATE TABLE Richieste(
   Destinazione_x DECIMAL(3, 1) NOT NULL,
   Destinazione_y DECIMAL(3, 1) NOT NULL,
   Utente INTEGER NOT NULL,
-  Corsa INTEGER,
   Accettata BOOLEAN,
 
   CHECK(TRUNCATE(Origine_x, 0)=Origine_x OR TRUNCATE(Origine_y, 0)=Origine_y),
   CHECK(TRUNCATE(Destinazione_x, 0)=Destinazione_x OR TRUNCATE(Destinazione_y, 0)=Destinazione_y),
 
-  FOREIGN KEY(Utente) REFERENCES Utenti(Id),
-  FOREIGN KEY(Corsa) REFERENCES Corse(Id)
+  FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 ) Engine=InnoDB;
 
-CREATE TABLE Storico_corse(
+CREATE TABLE Corse(
+  Richiesta INTEGER PRIMARY KEY,
+  Orario_partenza TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  Orario_conclusione TIMESTAMP NULL DEFAULT NULL,
+  Prezzo DECIMAL(10, 2) CHECK(Prezzo>0),
+
+  FOREIGN KEY(Richiesta) REFERENCES Richieste(Id)
+) Engine=InnoDB;
+
+CREATE TABLE Storico_corse( -- FIXME serve davvero?
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Corsa INTEGER NOT NULL,
   Utente INTEGER NOT NULL,
 
-  FOREIGN KEY(Corsa) REFERENCES Corse(Id),
+  FOREIGN KEY(Corsa) REFERENCES Corse(Richiesta),
   FOREIGN KEY(Utente) REFERENCES Utenti(Id)
 ) Engine=InnoDB;
 
@@ -87,7 +81,7 @@ CREATE TABLE Associazioni(
   Posto_occupato INTEGER NOT NULL,
 
   PRIMARY KEY(Corsa, Tratta, Posto_occupato),
-  FOREIGN KEY(Corsa) REFERENCES Corse(Id),
+  FOREIGN KEY(Corsa) REFERENCES Corse(Richiesta),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
 
@@ -163,7 +157,9 @@ CREATE TABLE Storico_tratte(
 CREATE TABLE Nodi(
   Id INTEGER PRIMARY KEY AUTO_INCREMENT,
   Latitudine INTEGER NOT NULL,
-  Longitudine INTEGER NOT NULL
+  Longitudine INTEGER NOT NULL,
+
+  UNIQUE(Latitudine, Longitudine)
 ) Engine=InnoDB;
 
 CREATE TABLE Archi(
