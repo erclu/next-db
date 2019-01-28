@@ -96,10 +96,10 @@ DROP VIEW IF EXISTS Vicinanza_veicoli_a_richieste;
 CREATE VIEW Vicinanza_veicoli_a_richieste AS
 SELECT
     r.Id AS Id_richiesta,
-    r.Origine_x AS R_x,
-    r.Origine_y AS R_y,
     v.Targa,
     ABS(r.Origine_x - v.Posizione_x) + ABS(r.Origine_y - v.Posizione_y) AS Distanza,
+    r.Origine_x AS R_x,
+    r.Origine_y AS R_y,
     v.Posizione_x AS V_x,
     v.Posizione_y AS V_y
 FROM
