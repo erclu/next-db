@@ -81,6 +81,7 @@ CREATE TABLE Associazioni(
   Posto_occupato INTEGER NOT NULL,
 
   PRIMARY KEY(Corsa, Tratta, Posto_occupato),
+  UNIQUE(Tratta, Posto_occupato),
   FOREIGN KEY(Corsa) REFERENCES Corse(Richiesta),
   FOREIGN KEY(Tratta) REFERENCES Tratte(Id)
 ) Engine=InnoDB;
