@@ -50,5 +50,32 @@ END |
 DELIMITER ;
 
 -- Funzione 1
+DROP FUNCTION IF EXISTS Accettazione_richiesta;
+DELIMITER |
+CREATE FUNCTION Accettazione_richiesta(Richiesta_id INTEGER) RETURNS BOOLEAN
+BEGIN
 
+  DECLARE targa CHAR(8);
+  DECLARE orario_partenza TIMESTAMP;
+
+  SELECT Targa INTO targa
+  FROM Vicinanza_veicoli_a_richieste as vvar
+  WHERE vvar.Id_richiesta = Richiesta_id
+  LIMIT 1;
+
+  SELECT r.Orario_partenza INTO orario_partenza
+  FROM Richieste r
+  WHERE r.Id = Richiesta_id;
+
+  IF targa IS NOT NULL
+  THEN
+    UPDATE Richieste SET Accettata = 1 WHERE Richieste.Id = Richiesta_id;
+    INSERT INTO Corse VALUES(Richiesta_id, orario_partenza, NULL, NULL);
+    RETURN 1;
+  ELSE
+    UPDATE Richieste SET Accettata = 0 WHERE Richieste.Id = Richiesta_id;
+    RETURN 0;
+  END IF;
+END |
+DELIMITER ;
 -- Funzione 2
