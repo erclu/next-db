@@ -81,7 +81,7 @@ DELIMITER ;
 -- Funzione 2
 DROP FUNCTION IF EXISTS Controllo_batteria;
 DELIMITER |
-CREATE FUNCTION Controllo_batteria(Targa_to_check CHAR(8)) RETURNS VARCHAR
+CREATE FUNCTION Controllo_batteria(Targa_to_check CHAR(8)) RETURNS VARCHAR(255)
 BEGIN
   DECLARE stato_batteria INTEGER;
   DECLARE posX DECIMAL(3,1);
@@ -89,42 +89,42 @@ BEGIN
   DECLARE stazione_di_ricarica_piu_vicina INTEGER;
   DECLARE posX_stazione INTEGER;
   DECLARE posY_stazione INTEGER;
-
   DECLARE veicolo_di_ricarica_piu_vicina CHAR(8);
   DECLARE posX_bp INTEGER;
   DECLARE posY_bp INTEGER;
-
   DECLARE distanza_stdr INTEGER;
   DECLARE distanza_bp INTEGER;
 
-  SELECT v.Stato_batteria, v.Posizione_x, v.Posizione_y INTO (stato_batteria, posX, posY)
+  SELECT v.Stato_batteria, v.Posizione_x, v.Posizione_y INTO stato_batteria, posX, posY
   FROM Veicoli v
-  WHERE v.targa = Targa_to_check;
+  WHERE v.Targa = Targa_to_check;
 
   IF stato_batteria < 20
   THEN
     SELECT sdr.Id, sdr.Posizione_x, sdr.Posizione_y, ABS(sdr.Posizione_x - posX) + ABS(sdr.Posizione_y - posY) as Distanza
-    INTO (stazione_di_ricarica_piu_vicina, posX_stazione, posY_stazione, distanza_stdr)
+    INTO stazione_di_ricarica_piu_vicina, posX_stazione, posY_stazione, distanza_stdr
     FROM Stazioni_di_ricarica sdr
     ORDER BY Distanza
     LIMIT 1;
 
     SELECT v.Targa, v.Posizione_x, v.Posizione_y, ABS(v.Posizione_x - posX) + ABS(v.Posizione_y - posY) as Distanza
-    INTO (veicolo_di_ricarica_piu_vicina, posX_bp, posY_bp, distanza_bp)
+    INTO veicolo_di_ricarica_piu_vicina, posX_bp, posY_bp, distanza_bp
     FROM Veicoli v
     WHERE v.Targa <> Targa_to_check AND v.Tipo = "Battery pack"
     LIMIT 1;
 
-    if distanza_stdr < distanza_bp
+    IF distanza_stdr < distanza_bp
     THEN
       UPDATE Veicoli SET In_ricarica = stazione_di_ricarica_piu_vicina WHERE Veicoli.Targa = Targa_to_check;
-      INSERT INTO Tratte VALUES(NULL, CURRENT_TIMESTAMP, posX, posY, posX_stazione, posY_stazione)
-      UPDATE Veicoli SET Tratta = SELECT LAST_INSERT_ID() WHERE Veicoli.Targa = Targa_to_check;
-      RETURN CONCAT("Stazione di ricarica: (",posX_stazione, ", ", posY_stazione, ")")
+      INSERT INTO Tratte VALUES(NULL, CURRENT_TIMESTAMP, posX, posY, posX_stazione, posY_stazione);
+      UPDATE Veicoli SET Tratta = (SELECT LAST_INSERT_ID()) WHERE Veicoli.Targa = Targa_to_check;
+      
+      RETURN CONCAT("Stazione di ricarica: (",posX_stazione, ", ", posY_stazione, ")");
     ELSE
-      INSERT INTO Tratte VALUES(NULL, CURRENT_TIMESTAMP, posX, posY, posX_bp, posY_bp)
-      UPDATE Veicoli SET Tratta = SELECT LAST_INSERT_ID() WHERE Veicoli.Targa = Targa_to_check;
-      RETURN CONCAT("Veicolo: (",posX_bp, ", ", posY_bp, ")")
+      INSERT INTO Tratte VALUES(NULL, CURRENT_TIMESTAMP, posX, posY, posX_bp, posY_bp);
+      
+      UPDATE Veicoli SET Tratta = (SELECT LAST_INSERT_ID()) WHERE Veicoli.Targa = Targa_to_check;
+      RETURN CONCAT("Veicolo: (",posX_bp, ", ", posY_bp, ")"); 
     END IF;
   END IF;
 END |
