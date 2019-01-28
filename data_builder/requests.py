@@ -33,12 +33,8 @@ def create_files():
 
     rides = [
       (
-        "Id",
+        "Richiesta",
         "Orario_partenza",
-        "Origine_x",
-        "Origine_y",
-        "Destinazione_x",
-        "Destinazione_y",
         "Orario_conclusione",
         "Prezzo",
       ),
