@@ -63,7 +63,7 @@ SELECT
     u.Nome,
     u.Cognome,
     st.Veicolo,
-    SUM(lcpt.lunghezza_cammino) AS strada_su_veicolo
+    SUM(lcpt.lunghezza_cammino) AS strada_percorsa
 FROM
     Utenti u,
     Storico_corse sc,
@@ -129,6 +129,3 @@ ORDER BY
     r.Id,
     Distanza
 ;
-
--- drop delle vecchie view
-DROP VIEW IF EXISTS Veicoli_per_Richiesta;
