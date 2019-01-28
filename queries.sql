@@ -1,5 +1,24 @@
 -- Query Progetto Basi di Dati 2018/19 Ercole Luca e Ferrati Marco
 
+-- #1
+DROP VIEW IF EXISTS Lunghezza_cammino_per_tratta;
+CREATE VIEW Lunghezza_cammino_per_tratta AS
+SELECT
+    t.Id AS tratta_id,
+    SUM(a.Peso)
+FROM
+    Tratte t,
+    Cammini c1,
+    Cammini c2,
+    Archi a
+WHERE
+    t.Id = c1.Tratta AND c1.Indice_sequenza +1 = c2.Indice_sequenza AND c1.Tratta = c2.Tratta AND c1.Nodo = a.Entrante AND c2.Nodo = a.Uscente
+GROUP BY
+    t.Id
+ORDER BY
+    t.Id,
+    c1.Indice_sequenza
+;
 -- #6
 DROP VIEW IF EXISTS Veicoli_per_Richiesta;
 CREATE VIEW Veicoli_per_Richiesta AS
@@ -24,7 +43,7 @@ ORDER BY
     Distanza
 ;
 
--- 
+-- #5
 DROP VIEW IF EXISTS Sequenza_eventi_per_utente;
 CREATE VIEW Sequenza_eventi_per_utente AS
 SELECT
