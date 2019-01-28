@@ -21,6 +21,22 @@ ORDER BY
 ;
 
 -- #2
+DROP VIEW IF EXISTS durata_tratte;
+CREATE VIEW durata_tratte AS
+(
+SELECT
+    t.Id idTratta,
+    TIMEDIFF(e.Orario, t.Orario_partenza) durata_tratta
+FROM
+    Eventi e,
+    EventiTratte et,
+    Tratte t
+WHERE
+    e.Id = et.Evento AND et.Tratta = t.Id AND e.Orario <> t.Orario_partenza
+ORDER BY
+    t.Id
+) AS
+;
 DROP VIEW IF EXISTS Ore_di_guida_per_autista;
 CREATE VIEW Ore_di_guida_per_autista AS
 SELECT
@@ -32,26 +48,14 @@ SELECT
         )
     ) Ore_di_guida
 FROM
-    (
-    SELECT
-        t.Id idTratta,
-        TIMEDIFF(e.Orario, t.Orario_partenza) durata_tratta
-    FROM
-        Eventi e,
-        EventiTratte et,
-        Tratte t
-    WHERE
-        e.Id = et.Evento AND et.Tratta = t.Id AND e.Orario <> t.Orario_partenza
-    ORDER BY
-        t.Id
-) AS durata_tratte,
+durata_tratte,
 Storico_tratte st,
 Autisti a
 WHERE
     durata_tratte.idTratta = st.Tratta AND st.Autista = a.Codice_dipendente
 GROUP BY
     st.Autista
-
+;
 
 -- #3
 
