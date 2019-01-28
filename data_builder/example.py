@@ -18,6 +18,7 @@ if __name__ == "__main__":
 # per eseguire il file che hai appena creato, da terminale:
 # "python3 -m data_builder.example"
 
-# oppure aggiungi il file che hai appena creato a __main__.py sulla riga dell'import,
+# per automatizzare:
+# aggiungi il file che hai appena creato a __main__.py sulla riga dell'import,
 # chiami la funzione create_files(), e da terminale:
 # "python3 -m data_builder"
