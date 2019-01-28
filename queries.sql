@@ -12,7 +12,7 @@ FROM
     Cammini c2,
     Archi a
 WHERE
-    t.Id = c1.Tratta AND c1.Indice_sequenza +1 = c2.Indice_sequenza AND c1.Tratta = c2.Tratta AND c1.Nodo = a.Entrante AND c2.Nodo = a.Uscente
+    t.Id = c1.Tratta AND c1.Indice_sequenza + 1 = c2.Indice_sequenza AND c1.Tratta = c2.Tratta AND c1.Nodo = a.Entrante AND c2.Nodo = a.Uscente
 GROUP BY
     t.Id
 ORDER BY
@@ -57,12 +57,27 @@ GROUP BY
 ;
 
 -- #3
-
+DROP VIEW IF EXISTS Storico_utenti_per_veicolo;
+CREATE VIEW Storico_utenti_per_veicolo AS
+SELECT
+    u.Nome,
+    u.Cognome,
+    st.Veicolo,
+    SUM(lcpt.lunghezza_cammino) AS strada_su_veicolo
+FROM
+    Utenti u,
+    Storico_corse sc,
+    Associazioni a,
+    Tratte t,
+    lunghezza_cammino_per_tratta lcpt,
+    Storico_tratte st
+WHERE
+    u.Id = sc.Utente AND sc.Corsa = a.Corsa AND a.Tratta = t.Id AND t.Id = lcpt.tratta_id AND st.Tratta = lcpt.tratta_id
+GROUP BY
+    u.Id, st.Veicolo
+;
 
 -- #4
-
-
--- #5
 DROP VIEW IF EXISTS Sequenza_eventi_per_utente;
 CREATE VIEW Sequenza_eventi_per_utente AS
 SELECT
@@ -91,7 +106,7 @@ ORDER BY
     u.Id, e.Orario
 ;
 
--- #6
+-- #5
 DROP VIEW IF EXISTS Vicinanza_veicoli_a_richieste;
 CREATE VIEW Vicinanza_veicoli_a_richieste AS
 SELECT
