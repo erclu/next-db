@@ -335,7 +335,7 @@ WHERE EXISTS
         Richieste r
     WHERE
         u.Id = r.Utente
-)
+);
 
 /*CREAZIONE TRIGGER E FUNZIONI*/
 -- Trigger e funzioni Progetto Basi di Dati 2018/19 Ercole Luca e Ferrati Marco
