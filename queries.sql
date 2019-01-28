@@ -131,8 +131,6 @@ ORDER BY
 ;
 
 -- #6
-
--- #6
 DROP VIEW IF EXISTS Utenti_che_non_hanno_mai_fatto_una_richiesta;
 CREATE VIEW Utenti_che_non_hanno_mai_fatto_una_richiesta AS
 SELECT
