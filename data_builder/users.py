@@ -14,9 +14,9 @@ def create_files():
 
     users = [
       ("Id", "Email", "Password", "Nome", "Cognome", "Data_di_nascita"),
-      (1, "alice@email.it", PASSWORD, "Alice", "Alice", DOB),
-      (2, "bob@email.it", PASSWORD, "Bob", "Bob", DOB),
-      (3, "charlie@email.it", PASSWORD, "Charlie", "Charlie", DOB),
+      (1, "alice@email.it", PASSWORD, "Alice", "Aliceson", DOB),
+      (2, "bob@email.it", PASSWORD, "Bob", "Bobson", DOB),
+      (3, "charlie@email.it", PASSWORD, "Charlie", "Charlieson", DOB),
     ]
 
     payment_methods = [

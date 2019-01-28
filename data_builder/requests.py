@@ -2,7 +2,6 @@ from .utils import write_to_file, NULL
 
 
 def create_files():
-
     req_time = "2018-12-31 23:00:00"
     start_time = "2019-01-10 00:00:00"
     end_time = "2019-01-10 00:45:00"
@@ -71,7 +70,7 @@ def create_files():
       (3, 3, 2),
       (3, 4, 1),
       (4, 6, 0),
-      (4, 6, 1),
+      (4, 6, 1), #FIXME due utenti una corsa occupano due posti? vedi query...
     ]
 
     routes = [
