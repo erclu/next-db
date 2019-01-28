@@ -34,7 +34,7 @@ def create_files():
         "Tratta",
         "Testa",
       ),
-      ("NXT00001", 34, 45, 1, "Trasporto persone", NULL, NULL, NULL),
+      ("NXT00001", 34, 47, 6, "Trasporto persone", NULL, 1, NULL),
       ("NXT00002", 55, 45, 15, "Trasporto persone", NULL, NULL, NULL),
       ("NXT00003", 37, 35, 10, "Trasporto persone", NULL, NULL, NULL),
     ]
