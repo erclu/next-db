@@ -22,3 +22,33 @@ GROUP BY
 ORDER BY
     r.Id,
     Distanza
+;
+
+-- 
+DROP VIEW IF EXISTS Sequenza_eventi_per_utente;
+CREATE VIEW Sequenza_eventi_per_utente AS
+SELECT
+    u.Id,
+    u.Nome,
+    u.Cognome,
+    e.Orario AS orario_evento,
+    e.Tipo AS tipo_evento,
+    a.Posto_occupato,
+    t.Id AS id_tratta,
+    t.Orario_partenza AS orario_partenza_tratta,
+    t.Inizio_x,
+    t.Inizio_y
+FROM
+    Eventi e, EventiTratte et, Tratte t, Associazioni a, Corse c, Richieste r, Utenti u
+WHERE
+    e.Id = et.Evento AND
+    et.Tratta = t.Id AND
+    t.Id = a.Tratta AND
+    a.Corsa = c.Richiesta AND
+    c.Richiesta = r.Id AND
+    r.Utente = u.Id
+GROUP BY
+	e.Tipo, a.Posto_occupato, u.Id
+ORDER BY
+    u.Id, e.Orario
+;

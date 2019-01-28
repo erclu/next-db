@@ -4,10 +4,7 @@ GRID_SIZE = 50
 WEIGHT = 1
 
 
-def create_files():
-    edges = [("Entrante", "Uscente", "Nome", "Peso")]
-    nodes = [("Id", "Latitudine", "Longitudine")]
-
+def create_graph():
     adj_list = {}
     node_ids = {}
     counter = 1
@@ -32,6 +29,37 @@ def create_files():
             adj_list[(i, j)] = neighbours
             node_ids[(i, j)] = counter
             counter += 1
+
+    return adj_list, node_ids
+
+
+# def calculate_paths(od_instances):
+#     """( ((x,y), (x,y)), .... )"""
+#     graph, node_ids = create_graph()
+
+#     paths = {}
+
+#     for istance in od_instances:
+
+#         start, end = istance
+
+#         print(start, end)
+
+#         path = find_shortest_path(graph, start, end)
+
+#         print(path)
+
+#         path_ids = [node_ids[node] for node in path]
+#         paths[istance] = path_ids
+
+#     return paths
+
+
+def create_files():
+    edges = [("Entrante", "Uscente", "Nome", "Peso")]
+    nodes = [("Id", "Latitudine", "Longitudine")]
+
+    adj_list, node_ids = create_graph()
 
     for node_from, value in adj_list.items():
         for node_to in value:
