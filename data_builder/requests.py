@@ -35,15 +35,11 @@ def create_files():
       (
         "Id",
         "Orario_partenza",
-<<<<<<< HEAD
-        "Ora_conclusione",
-=======
         "Origine_x",
         "Origine_y",
         "Destinazione_x",
         "Destinazione_y",
         "Orario_conclusione",
->>>>>>> b0713ff935d8970302c73501f6090dbb9ac19df8
         "Prezzo",
       ),
       # TODO calcolo prezzi su corse completate..
