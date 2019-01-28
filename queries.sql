@@ -131,14 +131,14 @@ ORDER BY
 ;
 
 -- #6
-DROP VIEW IF EXISTS Utenti_che_non_hanno_mai_fatto_una_richiesta;
-CREATE VIEW Utenti_che_non_hanno_mai_fatto_una_richiesta AS
+DROP VIEW IF EXISTS Utenti_che_non_hanno_fatto_almeno_una_richiesta;
+CREATE VIEW Utenti_che_non_hanno_fatto_almeno_una_richiesta AS
 SELECT
     u.Nome,
     u.Cognome
 FROM
     Utenti u
-WHERE NOT EXISTS
+WHERE EXISTS
     (
     SELECT
         r.Id
