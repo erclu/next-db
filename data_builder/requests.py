@@ -16,39 +16,34 @@ def create_files():
         "Destinazione_x",
         "Destinazione_y",
         "Utente",
-        "Corsa",
         "Accettata",
       ),
       # accettate e concluse:
-      (NULL, req_time, start_time, 45, 20, 45, 1, 1, 1, 1), # R_alice
-      (NULL, req_time, start_time, 45, 20, 35, 10, 2, 2, 1), # R_bob
-      (NULL, req_time, start_time, 30, 15, 45, 1, 3, 3, 1), # R_charlie
+      (NULL, req_time, start_time, 45, 20, 45, 1, 1, 1), # R_alice
+      (NULL, req_time, start_time, 45, 20, 35, 10, 2, 1), # R_bob
+      (NULL, req_time, start_time, 30, 15, 45, 1, 3, 1), # R_charlie
       # accettate e in corso, due utenti che hanno fatto la stessa richiesta:
-      (NULL, NULL, NULL, 47, 5, 47, 15, 4, 4, 1),
-      (NULL, NULL, NULL, 47, 5, 47, 15, 5, 4, 1),
+      (NULL, NULL, NULL, 47, 5, 47, 15, 4, 1),
+      (NULL, NULL, NULL, 47, 5, 47, 15, 5, 1),
       # non ancora accettate:
-      (NULL, NULL, NULL, 1, 45, 20, 45, 6, NULL, NULL),
-      (NULL, NULL, NULL, 14, 14, 20, 20, 7, NULL, NULL),
-      (NULL, NULL, NULL, 1, 37, 1, 1, 8, NULL, NULL),
+      (NULL, NULL, NULL, 1, 45, 20, 45, 6, NULL),
+      (NULL, NULL, NULL, 14, 14, 20, 20, 7, NULL),
+      (NULL, NULL, NULL, 1, 37, 1, 1, 8, NULL),
     ]
 
     rides = [
       (
         "Id",
         "Orario_partenza",
-        "Origine_x",
-        "Origine_y",
-        "Destinazione_x",
-        "Destinazione_y",
         "Ora_conclusione",
         "Prezzo",
       ),
       # TODO calcolo prezzi su corse completate..
-      (1, start_time, 45, 20, 45, 1, end_time, 3.50), # C_Alice
-      (2, start_time, 45, 20, 35, 10, end_time, 3.0), # C_Bob
-      (3, start_time, 30, 15, 45, 1, end_time, 3.75), # C_Charlie
+      (1, start_time, end_time, 3.50), # C_Alice
+      (2, start_time, end_time, 3.0), # C_Bob
+      (3, start_time, end_time, 3.75), # C_Charlie
       # Corsa in corso
-      (4, NULL, 47, 5, 47, 15, NULL, NULL),
+      (4, NULL, NULL, NULL),
     ]
 
     completed_rides = [
