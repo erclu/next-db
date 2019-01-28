@@ -129,3 +129,23 @@ ORDER BY
     r.Id,
     Distanza
 ;
+
+-- #6
+
+-- #6
+DROP VIEW IF EXISTS Utenti_che_non_hanno_mai_fatto_una_richiesta;
+CREATE VIEW Utenti_che_non_hanno_mai_fatto_una_richiesta AS
+SELECT
+    u.Nome,
+    u.Cognome
+FROM
+    Utenti u
+WHERE NOT EXISTS
+    (
+    SELECT
+        r.Id
+    FROM
+        Richieste r
+    WHERE
+        u.Id = r.Utente
+)
