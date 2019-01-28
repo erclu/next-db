@@ -5,7 +5,7 @@ DROP VIEW IF EXISTS Lunghezza_cammino_per_tratta;
 CREATE VIEW Lunghezza_cammino_per_tratta AS
 SELECT
     t.Id AS tratta_id,
-    SUM(a.Peso)
+    SUM(a.Peso) AS lunghezza_cammino
 FROM
     Tratte t,
     Cammini c1,
@@ -19,29 +19,15 @@ ORDER BY
     t.Id,
     c1.Indice_sequenza
 ;
--- #6
-DROP VIEW IF EXISTS Veicoli_per_Richiesta;
-CREATE VIEW Veicoli_per_Richiesta AS
-SELECT
-    r.Id AS Id_richiesta,
-    r.Origine_x AS R_x,
-    r.Origine_y AS R_y,
-    v.Targa,
-    ABS(r.Origine_x - v.Posizione_x) + ABS(r.Origine_y - v.Posizione_y) AS Distanza,
-    v.Posizione_x AS V_x,
-    v.Posizione_y AS V_y
-FROM
-    Richieste r,
-    Veicoli v
-WHERE
-    v.Tipo = "Trasporto persone" AND r.Accettata IS NULL AND ABS(r.Origine_x - v.Posizione_x) < 25 AND ABS(r.Origine_y - v.Posizione_y) < 25
-GROUP BY
-    r.Id,
-    v.Targa
-ORDER BY
-    r.Id,
-    Distanza
-;
+
+-- #2
+
+
+-- #3
+
+
+-- #4
+
 
 -- #5
 DROP VIEW IF EXISTS Sequenza_eventi_per_utente;
@@ -70,4 +56,28 @@ GROUP BY
 	e.Tipo, a.Posto_occupato, u.Id
 ORDER BY
     u.Id, e.Orario
+;
+
+-- #6
+DROP VIEW IF EXISTS Veicoli_per_Richiesta;
+CREATE VIEW Veicoli_per_Richiesta AS
+SELECT
+    r.Id AS Id_richiesta,
+    r.Origine_x AS R_x,
+    r.Origine_y AS R_y,
+    v.Targa,
+    ABS(r.Origine_x - v.Posizione_x) + ABS(r.Origine_y - v.Posizione_y) AS Distanza,
+    v.Posizione_x AS V_x,
+    v.Posizione_y AS V_y
+FROM
+    Richieste r,
+    Veicoli v
+WHERE
+    v.Tipo = "Trasporto persone" AND r.Accettata IS NULL AND ABS(r.Origine_x - v.Posizione_x) < 25 AND ABS(r.Origine_y - v.Posizione_y) < 25
+GROUP BY
+    r.Id,
+    v.Targa
+ORDER BY
+    r.Id,
+    Distanza
 ;
