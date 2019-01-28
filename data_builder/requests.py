@@ -19,12 +19,12 @@ def create_files():
         "Accettata",
       ),
       # accettate e concluse:
-      (NULL, req_time, start_time, 45, 20, 45, 1, 1, 1), # R_alice
-      (NULL, req_time, start_time, 45, 20, 35, 10, 2, 1), # R_bob
-      (NULL, req_time, start_time, 30, 15, 45, 1, 3, 1), # R_charlie
+      (1, req_time, start_time, 45, 20, 45, 1, 1, 1), # R_alice
+      (2, req_time, start_time, 45, 20, 35, 10, 2, 1), # R_bob
+      (3, req_time, start_time, 30, 15, 45, 1, 3, 1), # R_charlie
       # accettate e in corso, due utenti che hanno fatto la stessa richiesta:
-      (NULL, NULL, NULL, 47, 5, 47, 15, 4, 1),
-      (NULL, NULL, NULL, 47, 5, 47, 15, 5, 1),
+      (4, NULL, NULL, 47, 5, 47, 15, 4, 1),
+      (5, NULL, NULL, 47, 5, 47, 15, 5, 1),
       # non ancora accettate:
       (NULL, NULL, NULL, 1, 45, 20, 45, 6, NULL),
       (NULL, NULL, NULL, 14, 14, 20, 20, 7, NULL),
