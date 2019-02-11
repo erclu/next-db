@@ -1,10 +1,5 @@
-.vscode
-*.code-workspace
-
 # file python
 __pycache__
 env
 .pylintrc
 .style.yapf
-
-bdd_project.sh

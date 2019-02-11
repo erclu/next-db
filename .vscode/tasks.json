@@ -1,0 +1,53 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "create data",
+      "type": "shell",
+      "command": "python -m data_builder",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      },
+      "group": {
+        "kind": "test",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "do all",
+      "type": "shell",
+      "command": ".\\init_db_ercolel.ps1",
+      "problemMatcher": [],
+      "presentation": {
+        "echo": true,
+        "reveal": "always",
+        "focus": true,
+        "panel": "shared",
+        "showReuseMessage": true,
+        "clear": true
+      }
+    },
+    // {
+    //   "label": "update data",
+    //   "type": "shell",
+    //   "command": "mysql --user=root --database=\"ercolel-PR\" --local-infile=1 --show-warnings --execute=\"source load_data.sql\"",
+    //   "problemMatcher": [],
+    //   "presentation": {
+    //     "echo": true,
+    //     "reveal": "always",
+    //     "focus": true,
+    //     "panel": "shared",
+    //     "showReuseMessage": true,
+    //     "clear": true
+    //   }
+    // }
+  ]
+}
